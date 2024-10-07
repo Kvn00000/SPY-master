@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<scenario name="Infiltration" desc="[fr]Dans ce scénario tu devras récupérer des documents qui nous ont été volés.&#xA;&#xA;Ta mission ? Programmer un robot pour l'infiltrer dans la base, éviter les gardes, récupérer les documents et ressortir  sans qu'il soit repéré. Bonne chance ![/fr][en]In this scenario, you will have to recover documents that have been stolen from us.&#xA;&#xA;Your mission? Program a robot to infiltrate the base, avoid the guards, retrieve the documents and exit undetected. Good luck![/en]">
+    <level src = "Levels/Infiltration/Niveau01.xml" name="Mission01" />
+    <level src = "Levels/Infiltration/Niveau02.xml" name="Mission02" />
+    <level src = "Levels/Infiltration/Niveau03.xml" name="Mission03" />
+    <level src = "Levels/Tutoriel/NommerScript.xml" name="Mission04" />
+    <level src = "Levels/Infiltration/Niveau04.xml" name="Mission05" />
+    <level src = "Levels/Infiltration/Niveau05.xml" name="Mission06" />
+    <level src = "Levels/Infiltration/Niveau06.xml" name="Mission07" />
+    <level src = "Levels/Infiltration/Niveau07.xml" name="Mission08" />
+    <level src = "Levels/Tutoriel/OuvrirPorte.xml" name="Mission09" />
+    <level src = "Levels/Infiltration/Niveau09.xml" name="Mission10" />
+    <level src = "Levels/Infiltration/Niveau10.xml" name="Mission11" />
+    <level src = "Levels/Infiltration/Niveau11.xml" name="Mission12" />
+    <level src = "Levels/Infiltration/Niveau12.xml" name="Mission13" />
+    <level src = "Levels/Infiltration/Niveau13.xml" name="Mission14" />
+    <level src = "Levels/Infiltration/Niveau14.xml" name="Mission15" />
+    <level src = "Levels/Infiltration/Niveau15.xml" name="Mission16" />
+    <level src = "Levels/Infiltration/Niveau16.xml" name="Mission17" />
+    <level src = "Levels/Infiltration/Niveau17.xml" name="Mission18" />
+    <level src = "Levels/Infiltration/Niveau18.xml" name="Mission19" />
+    <level src = "Levels/Infiltration/Niveau19.xml" name="Mission20" />
+    <level src = "Levels/Infiltration/Niveau20.xml" name="Mission21" />
+    <level src = "Levels/Infiltration/Niveau21.xml" name="Mission22" />
+</scenario>

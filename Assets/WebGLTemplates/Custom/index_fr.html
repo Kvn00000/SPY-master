@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <title>SPY</title>    
+	<meta content="Learning programming, Computational Thinking, SPY, Scratch, Python, Apprendre à programmer" name="description">
+	<meta content="Learning programming, Computational Thinking, SPY, Scratch, Python, apprendre à programmer" name="keywords">
+	
+	<!-- Favicons -->
+	<link href="TemplateData/favicon.ico" rel="shortcut icon">
+	<link href="TemplateData/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Bootstrap core CSS -->
+	<!--Production version-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<!--local version-->
+	<!--<link href="./libs/bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">-->
+	
+	<!-- Template Main CSS File -->
+	<link href="TemplateData/styleMain.css" rel="stylesheet">
+  </head>
+  <body>
+	<nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"><img src="TemplateData/LogoSPY.png" style="height: 40px;"></img></a>
+			<button id="collapseButton" class="navbar-toggler m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse m-2 justify-content-end" id="collapsibleNavbar">
+				<div class="nav-item"><a id="menu_#hero" class="nav-link scrollto active px-3 justify-content-end" href="game.html?lang=fr">Jouer</a></div>
+				<div class="nav-item"><a id="menu_#inBrief" class="nav-link scrollto px-3 justify-content-end" href="#inBrief">En bref</a></div>
+				<div class="nav-item"><a id="menu_#carousel" class="nav-link scrollto px-3 justify-content-end" href="#carousel">Galerie</a></div>
+				<div class="nav-item"><a id="menu_#peda" class="nav-link scrollto px-3 justify-content-end" href="#peda">Enseignants</a></div>
+				<div class="nav-item"><a id="menu_#share" class="nav-link scrollto px-3 justify-content-end" href="#share">Partager</a></div>
+				<div class="nav-item"><a id="menu_#publication" class="nav-link scrollto px-3 justify-content-end" href="#publication">Publications</a></div>
+				<div class="nav-item"><a id="menu_#about" class="nav-link scrollto px-3 justify-content-end" href="#about">A propos</a></div>
+				<div class="nav-item"><a id="menu_#contact" class="nav-link scrollto px-3 justify-content-end" href="#contact">Contact</a></div>
+				<div class="nav-item"><a class="nav-link scrollto px-3 justify-content-end" href="index.html?lang=en">English</a></div>
+			</div>
+		</div>
+	</nav>
+  
+	<!-- ======= Hero Section ======= -->
+	<section id="hero" class="d-flex align-items-center justify-content-center">
+	<div class="container position-relative">
+		<h1>Bienvenue sur SPY</h1>
+		<h2>A toi d'apprendre à programmer...</h2>
+		<a href="game.html?lang=fr" class="btn-get-started">Commencer à jouer&nbsp;!</a>
+	</div>
+	</section>
+
+	<!-- ======= In brief Section ======= -->
+    <section id="inBrief" class="about">
+      <div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<h1>Ludique</h1>
+				<p>SPY est un jeu vidéo conçu pour apprendre les bases de la programmation informatique. Plusieurs scénarios de jeu à la difficulté progressive permettent de se perfectionner.</p>
+			</div>
+			<div class="col-md-4">
+				<h1>Simple</h1>
+				<p>SPY propose un langage à base de blocs facile à utiliser pour programmer les actions de robots.</p>
+			</div>
+			<div class="col-md-4">
+				<h1>Gratuit</h1>
+				<p>SPY est un jeu gratuit, libre d'utilisation et personnalisable avec ses éditeurs de scénarios et de niveaux inclus.</p>
+			</div>
+		</div>
+    </section>
+	
+	<!-- ======= Slide show Section ======= -->
+    <section id="carousel" class="cta">
+      <div class="container">
+		<div class="text-center"><h1>Galerie</h1></div>
+		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+		  <div class="carousel-indicators">
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+		  </div>
+		  <div class="carousel-inner">
+			<div class="carousel-item active">
+			  <img src="StreamingAssets/Levels/Tutoriel/NommerScript.png" class="d-block w-70" style="margin: auto;">
+			</div>
+			<div class="carousel-item">
+			  <img src="StreamingAssets/Levels/Infiltration/Niveau14.png" class="d-block w-70" style="margin: auto;">
+			</div>
+			<div class="carousel-item">
+			  <img src="StreamingAssets/Levels/Infiltration/Niveau20.png" class="d-block w-70" style="margin: auto;">
+			</div>
+			<div class="carousel-item">
+			  <img src="StreamingAssets/Levels/Infiltration/Niveau16.png" class="d-block w-70" style="margin: auto;">
+			</div>
+			<div class="carousel-item">
+			  <img src="StreamingAssets/Levels/Infiltration/Niveau10.png" class="d-block w-70" style="margin: auto;">
+			</div>
+		  </div>
+		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Précédent</span>
+		  </button>
+		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Suivant</span>
+		  </button>
+		</div>
+      </div>
+    </section>
+	
+	<!-- ======= Pedagogical Section ======= -->
+    <section id="peda" class="about">
+      <div class="container">
+          <h1 class="text-center">Un jeu conçu pour les enseignants</h1>
+          <p>SPY contient plusieurs scénarios de jeu clés en main qui vous permettront de faire travailler vos élèves sur des compétences de la pensée informatique&nbsp;: <b>observer et modéliser</b> la simulation (abstraction)&nbsp;; <b>décomposer</b> sa stratégie en sous-étapes (décomposition)&nbsp;; <b>déterminer</b> la meilleure solution (évaluation)&nbsp;; <b>planifier</b> les actions à réaliser (pensée algorithmique)&nbsp;; <b>concevoir</b> des solutions permettant de résoudre plusieurs problèmes (généralisation).</p>
+		  <p>Outre ces scénarios pré-construits SPY contient un <b>éditeur de niveau</b> qui vous permettra de créer vos propres niveaux adaptés à vos élèves et de les agencer à l'aide de l'<b>éditeur de scénario</b>.</p>
+		  <p>N'hésitez pas aussi à proposer à vos élèves de créer leurs propres niveaux...</p>
+      </div>
+    </section>
+	
+	<!-- ======= Info Section ======= -->
+    <section id="share" class="cta">
+      <div class="container">
+		<h1>Une ressource partagée</h1>
+		<p>SPY est non seulement gratuit et libre d'utilisation mais il est aussi&nbsp;:
+		<div class="row">
+			<div class="col-md-6">
+				<h2>Open Source</h2>
+				<p>Pour les développeurs qui souhaitent participer au développement du jeu&nbsp;: <a href="https://github.com/Mocahteam/SPY" target="_blank">https://github.com/Mocahteam/SPY</a></p>
+			</div>
+			<div class="col-md-6">
+				<h2>Open Data</h2>
+				<p>Pour les chercheurs qui souhaitent analyser les traces anonymisées des sessions de jeu&nbsp;: <a href="https://spy.lip6.fr/openTraces.html">https://spy.lip6.fr/openTraces.html</a></p>
+			</div>
+		</div>
+      </div>
+    </section>
+	
+	<!-- ======= Publication Section ======= -->
+    <section id="publication" class="about">
+      <div class="container">
+          <h1>Publications scientifiques</h1>
+          <p>M. Muratet : “How to Characterize and Analyze the Computational Thinking Skills of a Learning Game?”, Lecture Notes in Computer Science, vol. 14200, Aveiro, Portugal, pp. 263-277, (Springer Nature Switzerland), (ISBN: 978-3-031-42681-0) (2023)</p>
+		  <p>M. Muratet : “Comment caractériser et analyser les compétences de la pensée informatique d’un jeu sérieux ?”, Actes de la onzième Conférence sur les Environnements Informatiques pour l’Apprentissage Humain, Brest, France, pp. 178-189 (2023)</p>
+		  <p>M. Muratet : “SPY : Un jeu sérieux partagé pour étudier l’apprentissage de la pensée informatique”, Actes de l'atelier Apprendre la Pensée Informatique de la Maternelle à l'Université. APIMU 2023, Brest, France, pp. 33-40 (2023)</p>
+		  <p>M. Kanaan, S. Maillos, M. Muratet : “Toward a learning game on Computational Thinking Driven by Competencies”, Proceedings of the 16th European Conference on Games Based Learning, vol. 16 (1), Lisbonne, Portugal, pp. 288-296 (2022)</p>
+      </div>
+    </section>
+	
+	<!-- ======= About Section ======= -->
+    <section id="about" class="cta">
+      <div class="container">
+		  <h1>A propos</h1>
+          <p>SPY est un jeu sérieux réalisé par l'équipe de recherche <a href="https://www.lip6.fr/recherche/team.php?acronyme=MOCAH" target="_blank">Mocah</a> du laboratoire <a href="https://www.lip6.fr/" target="_blank">Lip6</a> de <a href="https://www.sorbonne-universite.fr/" target="_blank">Sorbonne Université</a>.</p>
+		  <p>Autres projets&nbsp;: <a href="https://webia.lip6.fr/~muratetm/projects.php" target="_blank">https://webia.lip6.fr/~muratetm/projects.php</a>.</p>
+      </div>
+    </section>
+	
+	
+	<!-- ======= Contact Section ======= -->
+    <section id="contact" class="about">
+      <div class="container">
+		<div class="text-center">
+			<h1>Contact</h1>
+			<p id="contactName"></p>
+		</div>
+      </div>
+    </section>
+	
+	<footer class="footer fixed-bottom bg-dark ">
+		<div class="container">
+			<img src="TemplateData/LogoLIP6_white.png" height="40">
+			~
+			<img src="TemplateData/Logo_SU_white.png" height="40">
+		</div>
+	</footer>
+	
+	<script>
+		var contact = document.getElementById("contactName");
+		contact.innerHTML = "mathieu.muratet<span style=\"display: none;\">cache</span> (at) lip6.fr";
+	</script>
+
+	<!--Production version-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script> <!-- Pour les tooltips -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	
+	<!--Local version-->
+	<!--<script src="./libs/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>-->
+  </body>
+</html>
