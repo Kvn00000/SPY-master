@@ -471,6 +471,7 @@ public class TitleScreenSystem : FSystem {
 	{
 		// try to load all child files
 		string[] files = Directory.GetFiles(path,"*.xml");
+		
 		webGL_fileToLoad += files.Length;
 		foreach (string fileName in files)
 		{
@@ -488,7 +489,7 @@ public class TitleScreenSystem : FSystem {
 
 	private IEnumerator GetLevelOrScenario_WebRequest(string uri)
 	{
-		UnityWebRequest www = UnityWebRequest.Get(uri);
+		UnityWebRequest www = UnityWebRequest.Get("file://"+uri);
 		yield return www.SendWebRequest();
 
 		if (www.result != UnityWebRequest.Result.Success)
