@@ -10,7 +10,6 @@ public class CurrentActionExecutor : FSystem {
     private Family f_newCurrentAction = FamilyManager.getFamily(new AllOfComponents(typeof(CurrentAction), typeof(BasicAction)));
 	private Family f_agent = FamilyManager.getFamily(new AllOfComponents(typeof(ScriptRef), typeof(Position)));
 
-	private Family f_activableOil = FamilyManager.getFamily(new AllOfComponents(typeof(Activable),typeof(Position),typeof(AudioSource),typeof(OilDistributor)));
 
 	protected override void onStart()
 	{
@@ -114,6 +113,26 @@ public class CurrentActionExecutor : FSystem {
 							GameObjectManager.removeComponent<TurnedOn>(actGo);
 						else
 							GameObjectManager.addComponent<TurnedOn>(actGo);
+					}
+				}
+				Family f_activableOil = FamilyManager.getFamily(new AllOfComponents(typeof(Activable),typeof(Position),typeof(AudioSource),typeof(OilDistributor)));
+
+				Debug.Log(f_activableOil);
+				foreach ( GameObject actGo in f_activableOil){
+					Debug.Log("Ceci est un agent"+actGo);
+					if(actGo.GetComponent<Position>().x == agentPos.x && actGo.GetComponent<Position>().y == agentPos.y){
+						
+						actGo.GetComponent<AudioSource>().Play();
+						// toggle activable GameObject
+						if (actGo.GetComponent<TurnedOn>())
+							GameObjectManager.removeComponent<TurnedOn>(actGo);
+						else
+							GameObjectManager.addComponent<TurnedOn>(actGo);
+					}
+
+					foreach(GameObject agent in f_agent){
+						agent.GetComponent<OilTank>().quantity += actGo.GetComponent<OilDistributor>().quantity;
+						Debug.Log("" + agent.GetComponent<OilTank>().quantity);
 					}
 				}
 				ca.agent.GetComponent<Animator>().SetTrigger("Action");
