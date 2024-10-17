@@ -10,6 +10,8 @@ public class CurrentActionExecutor : FSystem {
     private Family f_newCurrentAction = FamilyManager.getFamily(new AllOfComponents(typeof(CurrentAction), typeof(BasicAction)));
 	private Family f_agent = FamilyManager.getFamily(new AllOfComponents(typeof(ScriptRef), typeof(Position)));
 
+	private Family f_activableOil = FamilyManager.getFamily(new AllOfComponents(typeof(Activable),typeof(Position),typeof(AudioSource),typeof(OilDistributor)));
+
 	protected override void onStart()
 	{
 		f_newCurrentAction.addEntryCallback(onNewCurrentAction);
