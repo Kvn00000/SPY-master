@@ -371,7 +371,6 @@ public class LevelGenerator : FSystem {
 		activable.GetComponent<Position>().x = gridX;
 		activable.GetComponent<Position>().y = gridY;
 		activable.GetComponent<OilDistributor>().quantity = qte;
-        activable.AddComponent<TurnedOn>();
         GameObjectManager.bind(activable);
 
 
