@@ -20,7 +20,7 @@
     <blockLimit blockType="TurnLeft" limit="-1" />
     <blockLimit blockType="TurnRight" limit="-1" />
     <blockLimit blockType="Wait" limit="-1" />
-    <blockLimit blockType="Activate" limit="0" />
+    <blockLimit blockType="Activate" limit="-1" />
     <blockLimit blockType="TurnBack" limit="-1" />
     <blockLimit blockType="IfThen" limit="-1" />
     <blockLimit blockType="IfElse" limit="-1" />
@@ -39,7 +39,9 @@
   </blockLimits>
   <door posY="7" posX="3" direction="0" slotId="0" />
   <robot inputLine="Erty/Plok" posY="6" posX="1" direction="2" />
-  <robot inputLine="Erty/Plok" posY="8" posX="1" direction="2" />
-  <script outputLine="Erty/Plok" editMode="0" />
+	<robot inputLine="Erty/Plok" posY="8" posX="1" direction="2" />
+	<oilcontainer posY="6" posX="3" oilqte="69" />
+	<oilcontainer posY="8" posX="3" oilqte="42" />
+<script outputLine="Erty/Plok" editMode="0" />
   <score twoStars="4527" threeStars="4666"/>
 </level>

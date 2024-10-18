@@ -134,7 +134,12 @@ public class LevelGenerator : FSystem {
 					createDoor(int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value),
 					(Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value), int.Parse(child.Attributes.GetNamedItem("slotId").Value));
 					break;
-				case "robot":
+
+                case "oilcontainer":
+                    createOilContainer(int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value), int.Parse(child.Attributes.GetNamedItem("oilqte").Value));
+                    break;
+
+                case "robot":
 				case "guard":
 				case "player": // backward compatibility
 				case "enemy": // backward compatibility
@@ -360,7 +365,15 @@ public class LevelGenerator : FSystem {
 		GameObjectManager.bind(activable);
 	}
 
-	private void createSpawnExit(int gridX, int gridY, bool type, bool hideExit = false){
+	private void createOilContainer(int gridX, int gridY, int qte)
+	{
+        GameObject activable = GameObject.Instantiate<GameObject>(Resources.Load("Prefabs/OilDistributor") as GameObject, LevelGO.transform.position + new Vector3(gridY * 3, 3, gridX * 3), Quaternion.Euler(0, 0, 0), LevelGO.transform);
+		activable.GetComponent<Position>().x = gridX;
+		activable.GetComponent<Position>().y = gridY;
+		activable.GetComponent<OilDistributor>().quantity = qte;
+    }
+
+    private void createSpawnExit(int gridX, int gridY, bool type, bool hideExit = false){
 		GameObject spawnExit;
 		if(type)
 			spawnExit = GameObject.Instantiate<GameObject>(Resources.Load ("Prefabs/TeleporterSpawn") as GameObject, LevelGO.transform.position + new Vector3(gridY*3,1.5f,gridX*3), Quaternion.Euler(-90,0,0), LevelGO.transform);
