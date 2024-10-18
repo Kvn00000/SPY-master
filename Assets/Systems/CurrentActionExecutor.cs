@@ -9,11 +9,14 @@ public class CurrentActionExecutor : FSystem {
 	private Family f_activableConsole = FamilyManager.getFamily(new AllOfComponents(typeof(Activable),typeof(Position),typeof(AudioSource)));
     private Family f_newCurrentAction = FamilyManager.getFamily(new AllOfComponents(typeof(CurrentAction), typeof(BasicAction)));
 	private Family f_agent = FamilyManager.getFamily(new AllOfComponents(typeof(ScriptRef), typeof(Position)));
+	private Family f_activableOil = FamilyManager.getFamily(new AllOfComponents(typeof(Position), typeof(OilDistributor)));
 
 
-	protected override void onStart()
+    protected override void onStart()
 	{
-		f_newCurrentAction.addEntryCallback(onNewCurrentAction);
+
+        
+        f_newCurrentAction.addEntryCallback(onNewCurrentAction);
 		Pause = true;
 	}
 
@@ -104,7 +107,9 @@ public class CurrentActionExecutor : FSystem {
 			case BasicAction.ActionType.Wait:
 				break;
 			case BasicAction.ActionType.Activate:
+
 				Position agentPos = ca.agent.GetComponent<Position>();
+
 				foreach ( GameObject actGo in f_activableConsole){
 					if(actGo.GetComponent<Position>().x == agentPos.x && actGo.GetComponent<Position>().y == agentPos.y){
 						actGo.GetComponent<AudioSource>().Play();
@@ -115,7 +120,6 @@ public class CurrentActionExecutor : FSystem {
 							GameObjectManager.addComponent<TurnedOn>(actGo);
 					}
 				}
-				Family f_activableOil = FamilyManager.getFamily(new AllOfComponents(typeof(Activable),typeof(Position),typeof(AudioSource),typeof(OilDistributor)));
 
 				Debug.Log(f_activableOil);
 				foreach ( GameObject actGo in f_activableOil){
