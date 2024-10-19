@@ -18,7 +18,8 @@
     <blockLimit blockType="Forward" limit="-1" />
     <blockLimit blockType="TurnLeft" limit="-1" />
     <blockLimit blockType="TurnRight" limit="-1" />
-    <blockLimit blockType="Wait" limit="-1" />
+	  <blockLimit blockType="Wait" limit="-1" />
+	  <blockLimit blockType="DrinkOil" limit="8" />
     <blockLimit blockType="Activate" limit="-1" />
     <blockLimit blockType="TurnBack" limit="-1" />
     <blockLimit blockType="IfThen" limit="-1" />
