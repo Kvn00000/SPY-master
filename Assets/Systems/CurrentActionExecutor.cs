@@ -124,14 +124,21 @@ public class CurrentActionExecutor : FSystem {
 					}
 				}
 
-				foreach ( GameObject actGo in f_activableOil){
-					if (actGo.GetComponent<Position>().x == agentPos.x && actGo.GetComponent<Position>().y == agentPos.y)
-					{
-						// 2nd parameter : oil distributor
-                        ApplyAddOil(ca.agent, actGo);
-					}
-                }
+				
                 
+				break;
+
+			case BasicAction.ActionType.DrinkOil:
+                Position agentPosi = ca.agent.GetComponent<Position>();
+
+                foreach (GameObject actGo in f_activableOil)
+                {
+                    if (actGo.GetComponent<Position>().x == agentPosi.x && actGo.GetComponent<Position>().y == agentPosi.y)
+                    {
+                        // 2nd parameter : oil distributor
+                        ApplyAddOil(ca.agent, actGo);
+                    }
+                }
 				break;
 		}
 		ca.StopAllCoroutines();
@@ -202,7 +209,7 @@ public class CurrentActionExecutor : FSystem {
         go.GetComponent<OilTank>().quantity += oil_distributor.GetComponent<OilDistributor>().quantity;
         go.GetComponent<Animator>().SetTrigger("Action");
         go.GetComponent<AudioSource>().Play();
-
+		GameObjectManager.unbind(oil_distributor);
         UnityEngine.Object.Destroy(oil_distributor);
     }
 

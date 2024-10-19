@@ -522,6 +522,41 @@
 						}
 					],
 					"rule": "turnBackInLib >= 1 or turnBackInScript >= 1"
+				},{
+					"key": "SPY_Action_DrinkOil",
+					"parentKey": "SPY_Actions",
+					"name": "[fr]F14 Bloc Action \"Boire Essence\"[/fr][en]F14 \"Drink Oil\" action block[/en]",
+					"description": "[fr]Donner au joueur d'utiliser des blocs \"Drink Oil\".[/fr][en]Give the player the option of using \"Drink Oil\" blocks.[/en]",
+					"filters": [
+						{
+							"label": "waitInLib",
+							"tag": "blockLimit",
+							"constraints": [
+								{
+									"attribute": "blockType",
+									"constraint": "=",
+									"value": "Wait"
+								},
+								{
+									"attribute": "limit",
+									"constraint": "<>",
+									"value": "0"
+								}
+							]
+						},
+						{
+							"label": "waitInScript",
+							"tag": "action",
+							"constraints": [
+								{
+									"attribute": "type",
+									"constraint": "=",
+									"value": "Wait"
+								}
+							]
+						}
+					],
+					"rule": "waitInLib >= 1 or waitInScript >= 1"
 				},
 				{
 					"key": "SPY_Controls",
