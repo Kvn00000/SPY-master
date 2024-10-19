@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8627932758764623032}
   - component: {fileID: 2909342299866898646}
   - component: {fileID: 6531089577149559398}
-  - component: {fileID: 3058548920491024513}
   - component: {fileID: 891228908983535191}
+  - component: {fileID: 7973356055604169583}
   m_Layer: 0
   m_Name: OilDistributor
   m_TagString: Untagged
@@ -31,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 5558381946440957135}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 2.5, y: 3, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -92,7 +92,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotID: 
---- !u!23 &3058548920491024513
+--- !u!33 &891228908983535191
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5558381946440957135}
+  m_Mesh: {fileID: 4300000, guid: 151d9db7bfb11a34ea8d79e67f801b69, type: 3}
+--- !u!23 &7973356055604169583
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,7 +120,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2e5f47d85ffc68049a25dd53fdb14cab, type: 2}
+  - {fileID: 2100000, guid: de7e32ef6c2e84928aee67cf65292972, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -134,11 +142,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &891228908983535191
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5558381946440957135}
-  m_Mesh: {fileID: 4300000, guid: 9e85b6f1ebd6cb248b32aed9fdc33029, type: 3}
