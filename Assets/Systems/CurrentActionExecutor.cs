@@ -127,7 +127,6 @@ public class CurrentActionExecutor : FSystem {
 				foreach ( GameObject actGo in f_activableOil){
 					if (actGo.GetComponent<Position>().x == agentPos.x && actGo.GetComponent<Position>().y == agentPos.y)
 					{
-                        actGo.GetComponent<AudioSource>().Play();
 						// 2nd parameter : oil distributor
                         ApplyAddOil(ca.agent, actGo);
 					}
@@ -202,6 +201,9 @@ public class CurrentActionExecutor : FSystem {
 	private void ApplyAddOil(GameObject go, GameObject oil_distributor) {
         go.GetComponent<OilTank>().quantity += oil_distributor.GetComponent<OilDistributor>().quantity;
         go.GetComponent<Animator>().SetTrigger("Action");
+        go.GetComponent<AudioSource>().Play();
+
+        UnityEngine.Object.Destroy(oil_distributor);
     }
 
 	private void ApplyTurnRight(GameObject go){

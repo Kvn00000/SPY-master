@@ -41,6 +41,7 @@
   <robot inputLine="Erty/Plok" posY="6" posX="1" direction="2" />
 	<robot inputLine="Erty/Plok" posY="8" posX="1" direction="2" />
 	<oilcontainer posY="6" posX="3" oilqte="69" />
+	<oilcontainer posY="8" posX="4" oilqte="69" />
 	
 	
 	
