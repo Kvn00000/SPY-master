@@ -42,10 +42,7 @@
 	<robot inputLine="Erty/Plok" posY="8" posX="1" direction="2" />
 	<oilcontainer posY="6" posX="3" oilqte="69" />
 	
-	<oilcontainer posY="8" posX="3" oilqte="42" />
-	<oilcontainer posY="8" posX="4" oilqte="42" />
-	<oilcontainer posY="8" posX="5" oilqte="42" />
-	<oilcontainer posY="8" posX="6" oilqte="42" />
+	
 	
 <script outputLine="Erty/Plok" editMode="0" />
   <score twoStars="4527" threeStars="4666"/>

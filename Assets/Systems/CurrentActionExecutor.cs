@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using FYFY;
+using System;
+using TinCan;
+using static DIG.GBLXAPI.Builders.StatementBuilder;
 
 /// <summary>
 /// This system executes new currentActions
@@ -121,25 +124,15 @@ public class CurrentActionExecutor : FSystem {
 					}
 				}
 
-				Debug.Log(f_activableOil);
 				foreach ( GameObject actGo in f_activableOil){
-					Debug.Log("Ceci est un agent"+actGo);
-					if(actGo.GetComponent<Position>().x == agentPos.x && actGo.GetComponent<Position>().y == agentPos.y){
-						
-						actGo.GetComponent<AudioSource>().Play();
-						// toggle activable GameObject
-						if (actGo.GetComponent<TurnedOn>())
-							GameObjectManager.removeComponent<TurnedOn>(actGo);
-						else
-							GameObjectManager.addComponent<TurnedOn>(actGo);
+					if (actGo.GetComponent<Position>().x == agentPos.x && actGo.GetComponent<Position>().y == agentPos.y)
+					{
+                        actGo.GetComponent<AudioSource>().Play();
+						// 2nd parameter : oil distributor
+                        ApplyAddOil(ca.agent, actGo);
 					}
-
-					foreach(GameObject agent in f_agent){
-						agent.GetComponent<OilTank>().quantity += actGo.GetComponent<OilDistributor>().quantity;
-						Debug.Log("" + agent.GetComponent<OilTank>().quantity);
-					}
-				}
-				ca.agent.GetComponent<Animator>().SetTrigger("Action");
+                }
+                
 				break;
 		}
 		ca.StopAllCoroutines();
@@ -205,6 +198,11 @@ public class CurrentActionExecutor : FSystem {
 				break;
 		}
 	}
+
+	private void ApplyAddOil(GameObject go, GameObject oil_distributor) {
+        go.GetComponent<OilTank>().quantity += oil_distributor.GetComponent<OilDistributor>().quantity;
+        go.GetComponent<Animator>().SetTrigger("Action");
+    }
 
 	private void ApplyTurnRight(GameObject go){
 		switch (go.GetComponent<Direction>().direction){
