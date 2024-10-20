@@ -242,6 +242,9 @@ public class SaveFileSystem : FSystem
 						levelExport += "\t\t<slot slotId=\""+ slot + "\" />\n";
 					levelExport += "\t</console>\n\n";
 					break;
+				case Jerrycan j:
+					levelExport += "\t<oilcontainer posX=\""+(j.col+1 - minCol)  + "\" posY=\"" + (j.line+ 1 - minLine) + "\" oilqte=\"" + j.oilQuantity+ "\" />\n\n";
+					break;
 				case Door d:
 					levelExport += "\t<door posX=\"" + (d.col+1 - minCol) + "\" posY=\"" + (d.line+ 1 - minLine) + "\" slotId=\""+ d.slot + "\" direction=\""+ (int)d.orientation + "\" />\n\n";
 					break;

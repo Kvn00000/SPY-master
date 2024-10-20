@@ -27,6 +27,7 @@ public class EditorGridSystem : FSystem
 	public Tile doorTile;
 	public Tile consoleTile;
 	public Tile coinTile;
+	public Tile jerrycanTile;
 	public Texture2D placingCursor;
 	public string defaultDecoration;
 	public PaintableGrid paintableGrid;
@@ -197,6 +198,17 @@ public class EditorGridSystem : FSystem
 						Debug.Log("Warning: Skipped console from file " + levelKey + ". Wrong data!");
 					}
 					break;
+				case "jerrycan" :
+					try{
+						position = getPositionFromXElement(child);
+						orientation = (Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value);
+						setTile(position.Item1, position.Item2, Cell.Jerrycan, orientation);
+						Debug.Log(child.Attributes);
+						int state = int.Parse(child.Attributes.GetNamedItem("fuelQuantity").Value);
+						((Console)paintableGrid.floorObjects[position]).state = state == 1;
+					}catch{
+						Debug.Log("Warning: Skipped console from file " + levelKey + ". Wrong data!");
+					}break;
 				case "door":
 					try
 					{
@@ -299,6 +311,7 @@ public class EditorGridSystem : FSystem
 						Cell.Door => new Door(rotation, line, col),
 						Cell.Console => new Console(rotation, line, col),
 						Cell.Coin => new FloorObject(Cell.Coin, Direction.Dir.North, line, col, false, false),
+						Cell.Jerrycan => new Jerrycan(rotation,line,col),
 						_ => null
 					};
 			}
@@ -361,6 +374,7 @@ public class EditorGridSystem : FSystem
 			Cell.Decoration => decoTile,
 			Cell.Door => doorTile,
 			Cell.Console => consoleTile,
+			Cell.Jerrycan => jerrycanTile,
 			Cell.Coin => coinTile,
 			_ => null
 		};
@@ -386,6 +400,7 @@ public enum Cell
 	Decoration = 10002,
 	Door = 10003,
 	Console = 10004,
+	Jerrycan = 10006,
 	Coin = 10005
 }
 
@@ -428,6 +443,14 @@ public class Console : FloorObject
 	{
 		this.slots = new string[0];
 		this.state = true;
+	}
+}
+
+public class Jerrycan : FloorObject{
+
+	public int oilQuantity;
+	public Jerrycan(Direction.Dir orientation, int line, int col) : base(Cell.Jerrycan, orientation, line, col){
+		this.oilQuantity = 0;
 	}
 }
 

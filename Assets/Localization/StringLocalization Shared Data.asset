@@ -1393,6 +1393,14 @@ MonoBehaviour:
       (TMP)
     m_Metadata:
       m_Items: []
+  - m_Id: 165176601584324608
+    m_Key: EditorScene/MapEditorCanvas/ObjectPanel/Jerrycan/Text (TMP) (3)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 165177455611727872
+    m_Key: EditorScene/MapEditorCanvas/Popups/FuelQuantity/Text
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

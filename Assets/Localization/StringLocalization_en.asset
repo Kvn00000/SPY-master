@@ -1333,6 +1333,14 @@ MonoBehaviour:
     m_Localized: Credits
     m_Metadata:
       m_Items: []
+  - m_Id: 165176601584324608
+    m_Localized: jerrycan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 165177455611727872
+    m_Localized: Fuel Quantity
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -19,6 +19,7 @@ public class TilePopupSystem : FSystem
 	public GameObject inputLinePopup;
 	public GameObject rangePopup;
 	public GameObject consoleSlotsPopup;
+	public GameObject jerrycanPopup;
 	public GameObject doorSlotPopup;
 	public GameObject furniturePopup;
 
@@ -103,6 +104,13 @@ public class TilePopupSystem : FSystem
 					// load data
 					consoleSlotsPopup.GetComponentInChildren<TMP_InputField>().text = string.Join(", ", c.slots);
 					consoleSlotsPopup.GetComponentInChildren<Toggle>().isOn = c.state;
+					break;
+				case Jerrycan j:
+					GameObjectManager.setGameObjectState(orientationPopup, true);
+					GameObjectManager.setGameObjectState(jerrycanPopup, true);
+
+					doorSlotPopup.GetComponentInChildren<TMP_InputField>().text = j.oilQuantity.ToString();
+
 					break;
 				case PlayerRobot pr:
 					// enable popups
