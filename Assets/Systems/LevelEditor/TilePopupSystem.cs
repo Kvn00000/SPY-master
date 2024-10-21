@@ -19,7 +19,7 @@ public class TilePopupSystem : FSystem
 	public GameObject inputLinePopup;
 	public GameObject rangePopup;
 	public GameObject consoleSlotsPopup;
-	public GameObject jerrycanPopup;
+	public GameObject FuelQuantity;
 	public GameObject doorSlotPopup;
 	public GameObject furniturePopup;
 
@@ -92,6 +92,8 @@ public class TilePopupSystem : FSystem
 			{
 				case Door d:
 					// enable popups
+
+					Debug.Log("case dooe");
 					GameObjectManager.setGameObjectState(orientationPopup, true);
 					GameObjectManager.setGameObjectState(doorSlotPopup, true);
 					// load data
@@ -106,10 +108,11 @@ public class TilePopupSystem : FSystem
 					consoleSlotsPopup.GetComponentInChildren<Toggle>().isOn = c.state;
 					break;
 				case Jerrycan j:
+					Debug.Log("case log");
 					GameObjectManager.setGameObjectState(orientationPopup, true);
-					GameObjectManager.setGameObjectState(jerrycanPopup, true);
+					GameObjectManager.setGameObjectState(FuelQuantity, true);
 
-					doorSlotPopup.GetComponentInChildren<TMP_InputField>().text = j.oilQuantity.ToString();
+					FuelQuantity.GetComponentInChildren<TMP_InputField>().text = j.oilQuantity.ToString();
 
 					break;
 				case PlayerRobot pr:
@@ -250,5 +253,11 @@ public class TilePopupSystem : FSystem
 	{
 		if (selectedObject != null)
 			((DecorationObject)selectedObject).path = furnitureNameToPath[newData];
+	}
+
+	public void popupFuelQuantity(string newData){
+		if(selectedObject != null){
+			((Jerrycan)selectedObject).oilQuantity = int.Parse(newData);
+		}
 	}
 }

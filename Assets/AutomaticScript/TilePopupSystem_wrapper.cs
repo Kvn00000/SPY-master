@@ -7,7 +7,7 @@ public class TilePopupSystem_wrapper : BaseWrapper
 	public UnityEngine.GameObject inputLinePopup;
 	public UnityEngine.GameObject rangePopup;
 	public UnityEngine.GameObject consoleSlotsPopup;
-	public UnityEngine.GameObject jerrycanPopup;
+	public UnityEngine.GameObject FuelQuantity;
 	public UnityEngine.GameObject doorSlotPopup;
 	public UnityEngine.GameObject furniturePopup;
 	public PaintableGrid paintableGrid;
@@ -19,7 +19,7 @@ public class TilePopupSystem_wrapper : BaseWrapper
 		MainLoop.initAppropriateSystemField (system, "inputLinePopup", inputLinePopup);
 		MainLoop.initAppropriateSystemField (system, "rangePopup", rangePopup);
 		MainLoop.initAppropriateSystemField (system, "consoleSlotsPopup", consoleSlotsPopup);
-		MainLoop.initAppropriateSystemField (system, "jerrycanPopup", jerrycanPopup);
+		MainLoop.initAppropriateSystemField (system, "FuelQuantity", FuelQuantity);
 		MainLoop.initAppropriateSystemField (system, "doorSlotPopup", doorSlotPopup);
 		MainLoop.initAppropriateSystemField (system, "furniturePopup", furniturePopup);
 		MainLoop.initAppropriateSystemField (system, "paintableGrid", paintableGrid);
@@ -69,6 +69,11 @@ public class TilePopupSystem_wrapper : BaseWrapper
 	public void popupFurnitureDropDown(System.Int32 newData)
 	{
 		MainLoop.callAppropriateSystemMethod (system, "popupFurnitureDropDown", newData);
+	}
+
+	public void popupFuelQuantity(System.String newData)
+	{
+		MainLoop.callAppropriateSystemMethod (system, "popupFuelQuantity", newData);
 	}
 
 }

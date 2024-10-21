@@ -31,7 +31,7 @@ public class EditorGridSystem : FSystem
 	public Texture2D placingCursor;
 	public string defaultDecoration;
 	public PaintableGrid paintableGrid;
-	
+
 	private Vector2Int _gridSize;
 
 	private Cell activeBrush = Cell.Ground;
@@ -42,7 +42,7 @@ public class EditorGridSystem : FSystem
 	{
 		instance = this;
 	}
-	
+
 	// Use to init system before the first onProcess call
 	protected override void onStart()
 	{
@@ -62,6 +62,7 @@ public class EditorGridSystem : FSystem
 		}
 		f_newLoading.addEntryCallback(loadLevel);
 	}
+
 
 	// Use to process your families.
 	protected override void onProcess(int familiesUpdateCount)
@@ -86,7 +87,7 @@ public class EditorGridSystem : FSystem
 			resetTile(pos.y, pos.x);
 			return;
 		}
-		
+
 		if (activeBrush == Cell.Select)
 		{
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
@@ -182,7 +183,7 @@ public class EditorGridSystem : FSystem
 						orientation = (Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value);
 
 						setTile(position.Item1, position.Item2, Cell.Console, orientation);
-						
+
 						List<string> slotsID = new List<string>();
 						foreach (XmlNode slot in child.ChildNodes)
 						{
@@ -204,8 +205,9 @@ public class EditorGridSystem : FSystem
 						orientation = (Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value);
 						setTile(position.Item1, position.Item2, Cell.Jerrycan, orientation);
 						Debug.Log(child.Attributes);
-						int state = int.Parse(child.Attributes.GetNamedItem("fuelQuantity").Value);
-						((Console)paintableGrid.floorObjects[position]).state = state == 1;
+						// bizarre je sais pas ca sert a quoi .-.
+						// int oilQ = int.Parse(child.Attributes.GetNamedItem("quantity").Value);
+						// ((Jerrycan)paintableGrid.floorObjects[position]).oilQuantity = oilQ;
 					}catch{
 						Debug.Log("Warning: Skipped console from file " + levelKey + ". Wrong data!");
 					}break;
@@ -300,7 +302,7 @@ public class EditorGridSystem : FSystem
 		{
 			// this cell is a configurable cell
 			// check if this position is free or contains a different cell
-			if (!paintableGrid.floorObjects.ContainsKey(tuplePos) || paintableGrid.floorObjects[tuplePos].type != cell) 
+			if (!paintableGrid.floorObjects.ContainsKey(tuplePos) || paintableGrid.floorObjects[tuplePos].type != cell)
 			{
 				paintableGrid.floorObjects[tuplePos] =
 					cell switch
@@ -322,11 +324,11 @@ public class EditorGridSystem : FSystem
 		}
 
 		paintableGrid.GetComponent<Tilemap>().SetTile(new Vector3Int(col - _gridSize.x / 2,
-			_gridSize.y / 2 - line, 
-			(int) cell < 10000 ? 0 : -1), 
+			_gridSize.y / 2 - line,
+			(int) cell < 10000 ? 0 : -1),
 			cellToTile(cell));
-		
-		if((int) cell >= 10000)	
+
+		if((int) cell >= 10000)
 			rotateObject(rotation, line, col);
 	}
 
@@ -335,10 +337,10 @@ public class EditorGridSystem : FSystem
 		var tuplePos = new Tuple<int, int>(l, c);
 		paintableGrid.floorObjects.Remove(tuplePos);
 		paintableGrid.GetComponent<Tilemap>().SetTile(
-			new Vector3Int(c - _gridSize.x / 2, _gridSize.y / 2 - l, -1), 
+			new Vector3Int(c - _gridSize.x / 2, _gridSize.y / 2 - l, -1),
 			null);
 	}
-	
+
 	private void rotateObject(Direction.Dir newOrientation, int line, int col)
 	{
 		var newpos = new Vector3Int(col - _gridSize.x / 2,
@@ -359,7 +361,7 @@ public class EditorGridSystem : FSystem
 			_ => orientationToInt((Direction.Dir) ((int) orientation % 4))
 		};
 	}
-	
+
 	private Tile cellToTile(Cell cell)
 	{
 		return cell switch
@@ -391,9 +393,9 @@ public enum Cell
 {
 	Select = -10000,
 	Void = -1,
-	Ground = 0, 
-	Wall = 1, 
-	Spawn = 2, 
+	Ground = 0,
+	Wall = 1,
+	Spawn = 2,
 	Teleport = 3,
 	Player = 10000,
 	Enemy = 10001,
@@ -478,7 +480,7 @@ public class Robot : FloorObject
 public class PlayerRobot : Robot
 {
 	public PlayerRobot(string associatedScriptName, Direction.Dir orientation, int line, int col,
-		bool orientable = true, UIRootContainer.SolutionType scriptType = UIRootContainer.SolutionType.Undefined, UIRootContainer.EditMode editMode = UIRootContainer.EditMode.Editable) : 
+		bool orientable = true, UIRootContainer.SolutionType scriptType = UIRootContainer.SolutionType.Undefined, UIRootContainer.EditMode editMode = UIRootContainer.EditMode.Editable) :
 		base(Cell.Player, associatedScriptName, orientation, line, col, orientable, scriptType, editMode)
 	{
 	}
