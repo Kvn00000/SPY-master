@@ -233,11 +233,15 @@ public class CurrentActionExecutor : FSystem
 
 	private void ApplyAddOil(GameObject go, GameObject jerrycan)
 	{
-		go.GetComponent<OilTank>().quantity += jerrycan.GetComponent<JerrycanQuantity>().quantity;
-		go.GetComponent<Animator>().SetTrigger("Action");
-		go.GetComponent<AudioSource>().Play();
-		GameObjectManager.unbind(jerrycan);
-		UnityEngine.Object.Destroy(jerrycan);
+		// Empêche le robot de boire l'essence s'il a essence négative (= essence infinie)
+		if (go.GetComponent<OilTank>().quantity >= 0)
+		{
+            go.GetComponent<OilTank>().quantity += jerrycan.GetComponent<JerrycanQuantity>().quantity;
+            go.GetComponent<Animator>().SetTrigger("Action");
+            go.GetComponent<AudioSource>().Play();
+            GameObjectManager.unbind(jerrycan);
+            UnityEngine.Object.Destroy(jerrycan);
+        }
 	}
 
 	private void ApplyTurnRight(GameObject go)
