@@ -244,8 +244,15 @@ public class TilePopupSystem : FSystem
 	// see doorSlotPopup GameObject childs
 	public void popupDoorSlot(string newData)
 	{
-		if (selectedObject != null)
-			((Door)selectedObject).slot = newData;
+		try{
+			if (selectedObject != null)
+				((Door)selectedObject).slot = newData;
+		}catch{
+			Debug.Log("This is a hack job and a very bad idea");
+			if(selectedObject != null)
+			((Jerrycan)selectedObject).oilQuantity = int.Parse(newData);
+		}
+		
 	}
 
 	// see furniturePopup GameObject childs

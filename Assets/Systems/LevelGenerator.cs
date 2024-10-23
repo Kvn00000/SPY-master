@@ -23,8 +23,8 @@ public class LevelGenerator : FSystem {
 	public GameObject LevelGO;
 	private List<List<int>> map;
 	private GameData gameData;
-	private int nbAgentCreate = 0; // Nombre d'agents créés
-	private int nbDroneCreate = 0; // Nombre de drones créés
+	private int nbAgentCreate = 0; // Nombre d'agents crï¿½ï¿½s
+	private int nbDroneCreate = 0; // Nombre de drones crï¿½ï¿½s
 	private GameObject lastAgentCreated = null;
 
 	public GameObject editableCanvas;// Le container qui contient les Viewport/script containers
@@ -135,8 +135,8 @@ public class LevelGenerator : FSystem {
 					(Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value), int.Parse(child.Attributes.GetNamedItem("slotId").Value));
 					break;
 
-                case "oilcontainer":
-                    createOilContainer(int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value), int.Parse(child.Attributes.GetNamedItem("oilqte").Value));
+                case "jerrycan":
+                    createJerrycan(int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value), int.Parse(child.Attributes.GetNamedItem("oilqte").Value));
                     break;
 
                 case "robot":
@@ -259,7 +259,7 @@ public class LevelGenerator : FSystem {
 		}
 	}
 
-	// Créer une entité agent ou robot et y associer un panel container
+	// Crï¿½er une entitï¿½ agent ou robot et y associer un panel container
 	private GameObject createEntity(string nameAgent, int gridX, int gridY, Direction.Dir direction, string type){
 		GameObject entity = null;
 		switch(type){
@@ -273,7 +273,7 @@ public class LevelGenerator : FSystem {
 				break;
 		}
 
-		// Charger l'agent aux bonnes coordonées dans la bonne direction
+		// Charger l'agent aux bonnes coordonï¿½es dans la bonne direction
 		entity.GetComponent<Position>().x = gridX;
 		entity.GetComponent<Position>().y = gridY;
 		entity.GetComponent<Position>().targetX = -1;
@@ -283,9 +283,9 @@ public class LevelGenerator : FSystem {
 		//add new container to entity
 		ScriptRef scriptref = entity.GetComponent<ScriptRef>();
 		GameObject executablePanel = GameObject.Instantiate<GameObject>(Resources.Load ("Prefabs/ExecutablePanel") as GameObject, scriptContainer.gameObject.transform, false);
-		// Associer à l'agent l'UI container
+		// Associer ï¿½ l'agent l'UI container
 		scriptref.executablePanel = executablePanel;
-		// Associer à l'agent le script container
+		// Associer ï¿½ l'agent le script container
 		scriptref.executableScript = executablePanel.transform.Find("Scroll View").Find("Viewport").Find("ScriptContainer").gameObject;
 		// Association de l'agent au script de gestion des fonctions
 		executablePanel.GetComponentInChildren<LinkedWith>(true).target = entity;
@@ -301,7 +301,7 @@ public class LevelGenerator : FSystem {
 			else
 				agentEdit.associatedScriptName = "Agent" + nbAgentCreate;
 
-			// Chargement de l'icône de l'agent sur la localisation
+			// Chargement de l'icï¿½ne de l'agent sur la localisation
 			executablePanel.transform.Find("Header").Find("locateButton").GetComponentInChildren<Image>().sprite = Resources.Load("UI Images/robotIcon", typeof(Sprite)) as Sprite;
 			// Affichage du nom de l'agent
 			executablePanel.transform.Find("Header").Find("agentName").GetComponent<TMP_InputField>().text = entity.GetComponent<AgentEdit>().associatedScriptName;
@@ -309,7 +309,7 @@ public class LevelGenerator : FSystem {
 		else if (type == "guard" || type == "enemy")
 		{
 			nbDroneCreate++;
-			// Chargement de l'icône de l'agent sur la localisation
+			// Chargement de l'icï¿½ne de l'agent sur la localisation
 			executablePanel.transform.Find("Header").Find("locateButton").GetComponentInChildren<Image>().sprite = Resources.Load("UI Images/droneIcon", typeof(Sprite)) as Sprite;
 			// Affichage du nom de l'agent
 			if(nameAgent != "")
@@ -365,7 +365,7 @@ public class LevelGenerator : FSystem {
 		GameObjectManager.bind(activable);
 	}
 
-	private void createOilContainer(int gridX, int gridY, int qte)
+	private void createJerrycan(int gridX, int gridY, int qte)
 	{
         GameObject activable = GameObject.Instantiate<GameObject>(Resources.Load("Prefabs/OilDistributor") as GameObject, LevelGO.transform.position + new Vector3(gridY * 3, 1.5f, gridX * 3), Quaternion.Euler(0, 0, 0), LevelGO.transform);
 		activable.GetComponent<Position>().x = gridX;
