@@ -7,19 +7,20 @@ using static DIG.GBLXAPI.Builders.StatementBuilder;
 /// <summary>
 /// This system executes new currentActions
 /// </summary>
-public class CurrentActionExecutor : FSystem {
+public class CurrentActionExecutor : FSystem
+{
 	private Family f_wall = FamilyManager.getFamily(new AllOfComponents(typeof(Position)), new AnyOfTags("Wall", "Door"), new AnyOfProperties(PropertyMatcher.PROPERTY.ACTIVE_IN_HIERARCHY));
-	private Family f_activableConsole = FamilyManager.getFamily(new AllOfComponents(typeof(Activable),typeof(Position),typeof(AudioSource)));
-    private Family f_newCurrentAction = FamilyManager.getFamily(new AllOfComponents(typeof(CurrentAction), typeof(BasicAction)));
+	private Family f_activableConsole = FamilyManager.getFamily(new AllOfComponents(typeof(Activable), typeof(Position), typeof(AudioSource)));
+	private Family f_newCurrentAction = FamilyManager.getFamily(new AllOfComponents(typeof(CurrentAction), typeof(BasicAction)));
 	private Family f_agent = FamilyManager.getFamily(new AllOfComponents(typeof(ScriptRef), typeof(Position)));
 	private Family f_activableOil = FamilyManager.getFamily(new AllOfComponents(typeof(Position), typeof(JerrycanQuantity)));
 
 
-    protected override void onStart()
+	protected override void onStart()
 	{
 
-        
-        f_newCurrentAction.addEntryCallback(onNewCurrentAction);
+
+		f_newCurrentAction.addEntryCallback(onNewCurrentAction);
 		Pause = true;
 	}
 
@@ -58,7 +59,7 @@ public class CurrentActionExecutor : FSystem {
 						}
 						// the two robot want to exchange their position => forbiden
 						else if (r1Pos.targetX == r2Pos.x && r1Pos.targetY == r2Pos.y && r1Pos.x == r2Pos.targetX && r1Pos.y == r2Pos.targetY)
-                        {
+						{
 							r1Pos.targetX = -1;
 							r1Pos.targetY = -1;
 							r2Pos.targetX = -1;
@@ -88,13 +89,15 @@ public class CurrentActionExecutor : FSystem {
 	}
 
 	// each time a new currentAction is added, 
-	private void onNewCurrentAction(GameObject currentAction) {
+	private void onNewCurrentAction(GameObject currentAction)
+	{
 		Pause = false; // activates onProcess to identify inactive robots
-		
-		CurrentAction ca = currentAction.GetComponent<CurrentAction>();	
+
+		CurrentAction ca = currentAction.GetComponent<CurrentAction>();
 
 		// process action depending on action type
-		switch (currentAction.GetComponent<BasicAction>().actionType){
+		switch (currentAction.GetComponent<BasicAction>().actionType)
+		{
 			case BasicAction.ActionType.Forward:
 				ApplyForward(ca.agent);
 				break;
@@ -113,10 +116,12 @@ public class CurrentActionExecutor : FSystem {
 
 				Position agentPos = ca.agent.GetComponent<Position>();
 
-				foreach ( GameObject actGo in f_activableConsole){
-					if(actGo.GetComponent<Position>().x == agentPos.x && actGo.GetComponent<Position>().y == agentPos.y){
+				foreach (GameObject actGo in f_activableConsole)
+				{
+					if (actGo.GetComponent<Position>().x == agentPos.x && actGo.GetComponent<Position>().y == agentPos.y)
+					{
 						actGo.GetComponent<AudioSource>().Play();
-                        ca.agent.GetComponent<Animator>().SetTrigger("Action");
+						ca.agent.GetComponent<Animator>().SetTrigger("Action");
 
 						// toggle activable GameObject
 						if (actGo.GetComponent<TurnedOn>())
@@ -126,21 +131,21 @@ public class CurrentActionExecutor : FSystem {
 					}
 				}
 
-				
-                
+
+
 				break;
 
 			case BasicAction.ActionType.DrinkOil:
-                Position agentPosi = ca.agent.GetComponent<Position>();
+				Position agentPosi = ca.agent.GetComponent<Position>();
 
-                foreach (GameObject actGo in f_activableOil)
-                {
-                    if (actGo.GetComponent<Position>().x == agentPosi.x && actGo.GetComponent<Position>().y == agentPosi.y)
-                    {
-                        // 2nd parameter : oil distributor
-                        ApplyAddOil(ca.agent, actGo);
-                    }
-                }
+				foreach (GameObject actGo in f_activableOil)
+				{
+					if (actGo.GetComponent<Position>().x == agentPosi.x && actGo.GetComponent<Position>().y == agentPosi.y)
+					{
+						// 2nd parameter : oil distributor
+						ApplyAddOil(ca.agent, actGo);
+					}
+				}
 				break;
 		}
 		ca.StopAllCoroutines();
@@ -151,47 +156,66 @@ public class CurrentActionExecutor : FSystem {
 			GameObjectManager.addComponent<Moved>(ca.agent);
 	}
 
-	private void ApplyForward(GameObject go){
+	private void ApplyForward(GameObject go)
+	{
 		Position pos = go.GetComponent<Position>();
-		switch (go.GetComponent<Direction>().direction){
-			case Direction.Dir.North:
-				if (!checkObstacle(pos.x, pos.y - 1))
-				{
-					pos.targetX = pos.x;
-					pos.targetY = pos.y - 1;
-				}
-				else
-					GameObjectManager.addComponent<ForceMoveAnimation>(go);
-				break;
-			case Direction.Dir.South:
-				if(!checkObstacle(pos.x,pos.y + 1)){
-					pos.targetX = pos.x;
-					pos.targetY = pos.y + 1;
-				}
-				else
-					GameObjectManager.addComponent<ForceMoveAnimation>(go);
-				break;
-			case Direction.Dir.East:
-				if(!checkObstacle(pos.x + 1, pos.y)){
-					pos.targetX = pos.x + 1;
-					pos.targetY = pos.y;
-				}
-				else
-					GameObjectManager.addComponent<ForceMoveAnimation>(go);
-				break;
-			case Direction.Dir.West:
-				if(!checkObstacle(pos.x - 1, pos.y)){
-					pos.targetX = pos.x - 1;
-					pos.targetY = pos.y;
-				}
-				else
-					GameObjectManager.addComponent<ForceMoveAnimation>(go);
-				break;
+		OilTank ot = go.GetComponent<OilTank>();
+		if (ot.quantity != 0)
+		{
+			switch (go.GetComponent<Direction>().direction)
+			{
+				case Direction.Dir.North:
+					if (!checkObstacle(pos.x, pos.y - 1))
+					{
+						pos.targetX = pos.x;
+						pos.targetY = pos.y - 1;
+						ot.quantity -= 1;
+					}
+					else
+						GameObjectManager.addComponent<ForceMoveAnimation>(go);
+					break;
+				case Direction.Dir.South:
+					if (!checkObstacle(pos.x, pos.y + 1))
+					{
+						pos.targetX = pos.x;
+						pos.targetY = pos.y + 1;
+						ot.quantity -= 1;
+					}
+					else
+						GameObjectManager.addComponent<ForceMoveAnimation>(go);
+					break;
+				case Direction.Dir.East:
+					if (!checkObstacle(pos.x + 1, pos.y))
+					{
+						pos.targetX = pos.x + 1;
+						pos.targetY = pos.y;
+						ot.quantity -= 1;
+					}
+					else
+						GameObjectManager.addComponent<ForceMoveAnimation>(go);
+					break;
+				case Direction.Dir.West:
+					if (!checkObstacle(pos.x - 1, pos.y))
+					{
+						pos.targetX = pos.x - 1;
+						pos.targetY = pos.y;
+						ot.quantity -= 1;
+
+					}
+					else
+						GameObjectManager.addComponent<ForceMoveAnimation>(go);
+					break;
+			}
+		}else{
+			Debug.Log("Je nai [plus ] dessence aajajfm");
 		}
+
 	}
 
-	private void ApplyTurnLeft(GameObject go){
-		switch (go.GetComponent<Direction>().direction){
+	private void ApplyTurnLeft(GameObject go)
+	{
+		switch (go.GetComponent<Direction>().direction)
+		{
 			case Direction.Dir.North:
 				go.GetComponent<Direction>().direction = Direction.Dir.West;
 				break;
@@ -207,16 +231,19 @@ public class CurrentActionExecutor : FSystem {
 		}
 	}
 
-	private void ApplyAddOil(GameObject go, GameObject jerrycan) {
-        go.GetComponent<OilTank>().quantity += jerrycan.GetComponent<JerrycanQuantity>().quantity;
-        go.GetComponent<Animator>().SetTrigger("Action");
-        go.GetComponent<AudioSource>().Play();
+	private void ApplyAddOil(GameObject go, GameObject jerrycan)
+	{
+		go.GetComponent<OilTank>().quantity += jerrycan.GetComponent<JerrycanQuantity>().quantity;
+		go.GetComponent<Animator>().SetTrigger("Action");
+		go.GetComponent<AudioSource>().Play();
 		GameObjectManager.unbind(jerrycan);
-        UnityEngine.Object.Destroy(jerrycan);
-    }
+		UnityEngine.Object.Destroy(jerrycan);
+	}
 
-	private void ApplyTurnRight(GameObject go){
-		switch (go.GetComponent<Direction>().direction){
+	private void ApplyTurnRight(GameObject go)
+	{
+		switch (go.GetComponent<Direction>().direction)
+		{
 			case Direction.Dir.North:
 				go.GetComponent<Direction>().direction = Direction.Dir.East;
 				break;
@@ -232,8 +259,10 @@ public class CurrentActionExecutor : FSystem {
 		}
 	}
 
-	private void ApplyTurnBack(GameObject go){
-		switch (go.GetComponent<Direction>().direction){
+	private void ApplyTurnBack(GameObject go)
+	{
+		switch (go.GetComponent<Direction>().direction)
+		{
 			case Direction.Dir.North:
 				go.GetComponent<Direction>().direction = Direction.Dir.South;
 				break;
@@ -249,9 +278,11 @@ public class CurrentActionExecutor : FSystem {
 		}
 	}
 
-	private bool checkObstacle(int x, int z){
-		foreach( GameObject go in f_wall){
-			if(go.GetComponent<Position>().x == x && go.GetComponent<Position>().y == z)
+	private bool checkObstacle(int x, int z)
+	{
+		foreach (GameObject go in f_wall)
+		{
+			if (go.GetComponent<Position>().x == x && go.GetComponent<Position>().y == z)
 				return true;
 		}
 		return false;

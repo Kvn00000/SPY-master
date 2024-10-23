@@ -2039,7 +2039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a851999ad524fd640a3b2ec45d400d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: '#agentName<br>clique pour voir mon<br>comportement !'
+  text: '#agentName<br>#oilTank<br>clique pour voir mon<br>comportement !'
 --- !u!114 &176730054516014038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2108,7 +2108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 107c33970812b854d885add72e790b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quantity: 0
+  quantity: -1
 --- !u!82 &5569345245400026149
 AudioSource:
   m_ObjectHideFlags: 0

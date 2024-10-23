@@ -25,7 +25,17 @@ public class TooltipContent : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         string formatedContent = text;
         if (text.Contains("#agentName"))
-            formatedContent = text.Replace("#agentName", GetComponent<AgentEdit>().associatedScriptName);
+        {
+            if (GetComponent<OilTank>().quantity >= 0)
+            {
+                formatedContent = text.Replace("#agentName", GetComponent<AgentEdit>().associatedScriptName + "<br>Niveau d'essence: " + GetComponent<OilTank>().quantity);
+            }
+            else
+            {
+                formatedContent = text.Replace("#agentName", GetComponent<AgentEdit>().associatedScriptName + "<br>Niveau d'essence: ∞ Infini");
+
+            }
+        }
         tooltip.ShowTooltip(formatedContent);
         isOver = true;
     }
