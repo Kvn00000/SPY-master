@@ -24,6 +24,7 @@ public class TooltipContent : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         string formatedContent = text;
+        Debug.Log("Hover element");
         if (text.Contains("#agentName"))
         {
             if (GetComponent<OilTank>().quantity >= 0)
@@ -35,6 +36,10 @@ public class TooltipContent : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 formatedContent = text.Replace("#agentName", GetComponent<AgentEdit>().associatedScriptName + "<br>Niveau d'essence: ∞ Infini");
 
             }
+        }
+        if (text.Contains("#showOilQuantity"))
+        {
+            formatedContent = text.Replace("#showOilQuantity", ""+GetComponent<JerrycanQuantity>().quantity);
         }
         tooltip.ShowTooltip(formatedContent);
         isOver = true;
