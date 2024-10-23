@@ -12,7 +12,7 @@ public class CurrentActionExecutor : FSystem {
 	private Family f_activableConsole = FamilyManager.getFamily(new AllOfComponents(typeof(Activable),typeof(Position),typeof(AudioSource)));
     private Family f_newCurrentAction = FamilyManager.getFamily(new AllOfComponents(typeof(CurrentAction), typeof(BasicAction)));
 	private Family f_agent = FamilyManager.getFamily(new AllOfComponents(typeof(ScriptRef), typeof(Position)));
-	private Family f_activableOil = FamilyManager.getFamily(new AllOfComponents(typeof(Position), typeof(OilDistributor)));
+	private Family f_activableOil = FamilyManager.getFamily(new AllOfComponents(typeof(Position), typeof(JerrycanQuantity)));
 
 
     protected override void onStart()
@@ -207,12 +207,12 @@ public class CurrentActionExecutor : FSystem {
 		}
 	}
 
-	private void ApplyAddOil(GameObject go, GameObject oil_distributor) {
-        go.GetComponent<OilTank>().quantity += oil_distributor.GetComponent<OilDistributor>().quantity;
+	private void ApplyAddOil(GameObject go, GameObject jerrycan) {
+        go.GetComponent<OilTank>().quantity += jerrycan.GetComponent<JerrycanQuantity>().quantity;
         go.GetComponent<Animator>().SetTrigger("Action");
         go.GetComponent<AudioSource>().Play();
-		GameObjectManager.unbind(oil_distributor);
-        UnityEngine.Object.Destroy(oil_distributor);
+		GameObjectManager.unbind(jerrycan);
+        UnityEngine.Object.Destroy(jerrycan);
     }
 
 	private void ApplyTurnRight(GameObject go){

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 891228908983535191}
   - component: {fileID: 7973356055604169583}
   m_Layer: 0
-  m_Name: OilDistributor
+  m_Name: Jerrycan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

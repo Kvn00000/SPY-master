@@ -204,10 +204,9 @@ public class EditorGridSystem : FSystem
 						position = getPositionFromXElement(child);
 						orientation = (Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value);
 						setTile(position.Item1, position.Item2, Cell.Jerrycan, orientation);
-						Debug.Log(child.Attributes);
-						// bizarre je sais pas ca sert a quoi .-.
-						// int oilQ = int.Parse(child.Attributes.GetNamedItem("quantity").Value);
-						// ((Jerrycan)paintableGrid.floorObjects[position]).oilQuantity = oilQ;
+
+						int oilQ = int.Parse(child.Attributes.GetNamedItem("oilQuantity").Value);
+						((Jerrycan)paintableGrid.floorObjects[position]).oilQuantity = oilQ;
 					}catch{
 						Debug.Log("Warning: Skipped console from file " + levelKey + ". Wrong data!");
 					}break;

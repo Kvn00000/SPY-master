@@ -136,7 +136,7 @@ public class LevelGenerator : FSystem {
 					break;
 
                 case "jerrycan":
-                    createJerrycan(int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value), int.Parse(child.Attributes.GetNamedItem("oilqte").Value));
+                    createJerrycan(int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value), int.Parse(child.Attributes.GetNamedItem("oilQuantity").Value));
                     break;
 
                 case "robot":
@@ -367,10 +367,10 @@ public class LevelGenerator : FSystem {
 
 	private void createJerrycan(int gridX, int gridY, int qte)
 	{
-        GameObject activable = GameObject.Instantiate<GameObject>(Resources.Load("Prefabs/OilDistributor") as GameObject, LevelGO.transform.position + new Vector3(gridY * 3, 1.5f, gridX * 3), Quaternion.Euler(0, 0, 0), LevelGO.transform);
+        GameObject activable = GameObject.Instantiate<GameObject>(Resources.Load("Prefabs/Jerrycan") as GameObject, LevelGO.transform.position + new Vector3(gridY * 3, 1.5f, gridX * 3), Quaternion.Euler(0, 0, 0), LevelGO.transform);
 		activable.GetComponent<Position>().x = gridX;
 		activable.GetComponent<Position>().y = gridY;
-		activable.GetComponent<OilDistributor>().quantity = qte;
+		activable.GetComponent<JerrycanQuantity>().quantity = qte;
         GameObjectManager.bind(activable);
 
 

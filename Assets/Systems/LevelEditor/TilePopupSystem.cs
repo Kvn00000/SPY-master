@@ -19,7 +19,7 @@ public class TilePopupSystem : FSystem
 	public GameObject inputLinePopup;
 	public GameObject rangePopup;
 	public GameObject consoleSlotsPopup;
-	public GameObject FuelQuantity;
+	public GameObject oilQuantityPopup;
 	public GameObject doorSlotPopup;
 	public GameObject furniturePopup;
 
@@ -92,8 +92,6 @@ public class TilePopupSystem : FSystem
 			{
 				case Door d:
 					// enable popups
-
-					Debug.Log("case dooe");
 					GameObjectManager.setGameObjectState(orientationPopup, true);
 					GameObjectManager.setGameObjectState(doorSlotPopup, true);
 					// load data
@@ -108,11 +106,10 @@ public class TilePopupSystem : FSystem
 					consoleSlotsPopup.GetComponentInChildren<Toggle>().isOn = c.state;
 					break;
 				case Jerrycan j:
-					Debug.Log("case log");
 					GameObjectManager.setGameObjectState(orientationPopup, true);
-					GameObjectManager.setGameObjectState(FuelQuantity, true);
+					GameObjectManager.setGameObjectState(oilQuantityPopup, true);
 
-					FuelQuantity.GetComponentInChildren<TMP_InputField>().text = j.oilQuantity.ToString();
+					oilQuantityPopup.GetComponentInChildren<TMP_InputField>().text = j.oilQuantity.ToString();
 
 					break;
 				case PlayerRobot pr:
@@ -244,14 +241,8 @@ public class TilePopupSystem : FSystem
 	// see doorSlotPopup GameObject childs
 	public void popupDoorSlot(string newData)
 	{
-		try{
 			if (selectedObject != null)
 				((Door)selectedObject).slot = newData;
-		}catch{
-			Debug.Log("This is a hack job and a very bad idea");
-			if(selectedObject != null)
-			((Jerrycan)selectedObject).oilQuantity = int.Parse(newData);
-		}
 		
 	}
 
@@ -262,7 +253,7 @@ public class TilePopupSystem : FSystem
 			((DecorationObject)selectedObject).path = furnitureNameToPath[newData];
 	}
 
-	public void popupFuelQuantity(string newData){
+	public void popupOilQuantity(string newData){
 		if(selectedObject != null){
 			((Jerrycan)selectedObject).oilQuantity = int.Parse(newData);
 		}
