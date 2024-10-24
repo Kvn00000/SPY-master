@@ -141,15 +141,19 @@ public class LevelGenerator : FSystem {
 
                 case "robot":
 				case "guard":
+				case "rustyrobot":
+				case "rustyplayer":
 				case "player": // backward compatibility
 				case "enemy": // backward compatibility
 					string nameAgentByUser = "";
-					XmlNode agentName = child.Attributes.GetNamedItem("inputLine"); 
-					if (agentName == null)
+					XmlNode agentName = child.Attributes.GetNamedItem("inputLine");
+					if (agentName == null){
 						agentName = child.Attributes.GetNamedItem("associatedScriptName"); // for backward compatibility
+					}
 					if (agentName != null && agentName.Value != "")
 						nameAgentByUser = agentName.Value;
-					GameObject agent = createEntity(Utility.extractLocale(nameAgentByUser), int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value),
+					Debug.Log("Création rusty robot with name : " + nameAgentByUser);
+                    GameObject agent = createEntity(Utility.extractLocale(nameAgentByUser), int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value),
 					(Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value), child.Name);
 					if (child.Name == "enemy" || child.Name == "guard")
 					{
@@ -267,7 +271,12 @@ public class LevelGenerator : FSystem {
 			case "player": // backward compatibility
 				entity = GameObject.Instantiate<GameObject>(Resources.Load ("Prefabs/Robot Kyle") as GameObject, LevelGO.transform.position + new Vector3(gridY*3,1.5f,gridX*3), Quaternion.Euler(0,0,0), LevelGO.transform);
 				break;
-			case "guard":
+
+			case "rustyrobot":
+				Debug.Log("Lecture rusty robot");
+                entity = GameObject.Instantiate<GameObject>(Resources.Load("Prefabs/Rusty Robot Kyle") as GameObject, LevelGO.transform.position + new Vector3(gridY * 3, 1.5f, gridX * 3), Quaternion.Euler(0, 0, 0), LevelGO.transform);
+				break;
+            case "guard":
 			case "enemy": // backward compatibility
 				entity = GameObject.Instantiate<GameObject>(Resources.Load ("Prefabs/Drone") as GameObject, LevelGO.transform.position + new Vector3(gridY*3,3.8f,gridX*3), Quaternion.Euler(0,0,0), LevelGO.transform);
 				break;
@@ -291,7 +300,7 @@ public class LevelGenerator : FSystem {
 		executablePanel.GetComponentInChildren<LinkedWith>(true).target = entity;
 
 		// On va charger l'image et le nom de l'agent selon l'agent (robot, ennemi etc...)
-		if (type == "robot" || type == "player")
+		if (type == "robot" || type == "player" || type == "rustyrobot" || type == "rustyplayer")
 		{
 			nbAgentCreate++;
 			// On nomme l'agent

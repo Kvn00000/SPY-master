@@ -24,7 +24,6 @@ public class TooltipContent : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         string formatedContent = text;
-        Debug.Log("Hover element");
         if (text.Contains("#agentName"))
         {
             if (GetComponent<OilTank>().quantity >= 0)
