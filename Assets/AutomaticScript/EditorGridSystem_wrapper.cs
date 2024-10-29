@@ -9,6 +9,7 @@ public class EditorGridSystem_wrapper : BaseWrapper
 	public UnityEngine.Tilemaps.Tile spawnTile;
 	public UnityEngine.Tilemaps.Tile teleportTile;
 	public UnityEngine.Tilemaps.Tile playerTile;
+	public UnityEngine.Tilemaps.Tile rustyPlayerTile;
 	public UnityEngine.Tilemaps.Tile enemyTile;
 	public UnityEngine.Tilemaps.Tile decoTile;
 	public UnityEngine.Tilemaps.Tile doorTile;
@@ -27,6 +28,7 @@ public class EditorGridSystem_wrapper : BaseWrapper
 		MainLoop.initAppropriateSystemField (system, "spawnTile", spawnTile);
 		MainLoop.initAppropriateSystemField (system, "teleportTile", teleportTile);
 		MainLoop.initAppropriateSystemField (system, "playerTile", playerTile);
+		MainLoop.initAppropriateSystemField (system, "rustyPlayerTile", rustyPlayerTile);
 		MainLoop.initAppropriateSystemField (system, "enemyTile", enemyTile);
 		MainLoop.initAppropriateSystemField (system, "decoTile", decoTile);
 		MainLoop.initAppropriateSystemField (system, "doorTile", doorTile);
