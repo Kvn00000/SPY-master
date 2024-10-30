@@ -810,8 +810,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 247112759}
   m_HandleRect: {fileID: 247112758}
   m_Direction: 2
-  m_Value: 0.99999964
-  m_Size: 0.7439394
+  m_Value: 0.9999998
+  m_Size: 0.46742424
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9694,8 +9694,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 405118513}
   m_HandleRect: {fileID: 405118512}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.9073529
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13622,8 +13622,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 391362985}
   m_HandleRect: {fileID: 391362984}
   m_Direction: 2
-  m_Value: 0.9999994
-  m_Size: 0.82161987
+  m_Value: 0.99999976
+  m_Size: 0.5162316
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -29612,7 +29612,7 @@ MonoBehaviour:
   spawnTile: {fileID: 11400000, guid: b356bf58ac0afb946839e125a3250511, type: 2}
   teleportTile: {fileID: 11400000, guid: b07e0ceee920d274d9eb37713cee13a7, type: 2}
   playerTile: {fileID: 11400000, guid: f35a5c5172fd9c64db628d0aae7fccf4, type: 2}
-  rustyPlayerTile: {fileID: 0}
+  rustyPlayerTile: {fileID: 11400000, guid: acbd24e7ec87b364faec2e1e0d1a65f2, type: 2}
   enemyTile: {fileID: 11400000, guid: fd46841c74b4df74c90695e7bfd6a9c7, type: 2}
   decoTile: {fileID: 11400000, guid: 38bb8e4e29470844e828fbf2a875bce4, type: 2}
   doorTile: {fileID: 11400000, guid: 24211b29d3dd2914cb45de8e4c75b6e3, type: 2}
