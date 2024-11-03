@@ -20,6 +20,7 @@ public class TilePopupSystem : FSystem
 	public GameObject rangePopup;
 	public GameObject consoleSlotsPopup;
 	public GameObject oilQuantityPopup;
+	public GameObject oilTankQuantityPopup;
 	public GameObject doorSlotPopup;
 	public GameObject furniturePopup;
 
@@ -116,7 +117,9 @@ public class TilePopupSystem : FSystem
 					// enable popups
 					GameObjectManager.setGameObjectState(orientationPopup, true);
 					GameObjectManager.setGameObjectState(inputLinePopup, true);
+					GameObjectManager.setGameObjectState(oilTankQuantityPopup, true);
 					// load data
+					oilTankQuantityPopup.GetComponentInChildren<TMP_InputField>().text = pr.oilTankQuantity.ToString();
 					inputLinePopup.GetComponentInChildren<TMP_InputField>().text = pr.inputLine;
 					break;
 				case EnemyRobot er:
@@ -256,6 +259,13 @@ public class TilePopupSystem : FSystem
 	public void popupOilQuantity(string newData){
 		if(selectedObject != null){
 			((Jerrycan)selectedObject).oilQuantity = int.Parse(newData);
+		}
+	}
+
+	public void popupOilTankQuantity(string newData){
+		if(selectedObject != null){
+			Debug.Log("dans tile popup : " + newData);
+			((PlayerRobot)selectedObject).oilTankQuantity = int.Parse(newData);
 		}
 	}
 }

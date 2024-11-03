@@ -249,7 +249,8 @@ public class SaveFileSystem : FSystem
 					levelExport += "\t<door posX=\"" + (d.col+1 - minCol) + "\" posY=\"" + (d.line+ 1 - minLine) + "\" slotId=\""+ d.slot + "\" direction=\""+ (int)d.orientation + "\" />\n\n";
 					break;
 				case PlayerRobot pr:
-					levelExport += "\t<player inputLine=\""+ pr.inputLine + "\" posX=\"" + (pr.col + 1 - minCol) + "\" posY=\"" + (pr.line + 1 - minLine) + "\" direction=\"" + (int)pr.orientation + "\" />\n\n";
+					Debug.Log("le save file ?"  + pr.oilTankQuantity);
+					levelExport += "\t<player inputLine=\""+ pr.inputLine + "\" posX=\"" + (pr.col + 1 - minCol) + "\" posY=\"" + (pr.line + 1 - minLine) + "\" direction=\"" + (int)pr.orientation +  "\" oilTankQuantity=\"" + pr.oilTankQuantity + "\" />\n\n";
 					break;
 				case EnemyRobot er:
 					levelExport += "\t<enemy inputLine=\"" + er.inputLine + "\" posX=\"" + (er.col + 1 - minCol) + "\" posY=\"" + (er.line + 1 - minLine) + "\" direction=\"" + (int)er.orientation + "\" range=\""+ er.range + "\" selfRange=\""+(er.selfRange ? "True" : "False") +"\" typeRange=\""+ (int)er.typeRange + "\" />\n\n";

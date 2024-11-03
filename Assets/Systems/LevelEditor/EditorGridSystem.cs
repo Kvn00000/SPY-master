@@ -232,6 +232,9 @@ public class EditorGridSystem : FSystem
 						setTile(position.Item1, position.Item2, Cell.Player, orientation);
 						inputLine = child.Attributes.GetNamedItem("inputLine").Value;
 						((PlayerRobot)paintableGrid.floorObjects[position]).inputLine = inputLine;
+						int oilTankQ = int.Parse(child.Attributes.GetNamedItem("oilTankQuantity").Value);
+						Debug.Log(oilTankQ);
+						((PlayerRobot)paintableGrid.floorObjects[position]).oilTankQuantity = oilTankQ;
 					}
 					catch
 					{
@@ -478,10 +481,13 @@ public class Robot : FloorObject
 
 public class PlayerRobot : Robot
 {
+
+	public int oilTankQuantity;
 	public PlayerRobot(string associatedScriptName, Direction.Dir orientation, int line, int col,
 		bool orientable = true, UIRootContainer.SolutionType scriptType = UIRootContainer.SolutionType.Undefined, UIRootContainer.EditMode editMode = UIRootContainer.EditMode.Editable) :
 		base(Cell.Player, associatedScriptName, orientation, line, col, orientable, scriptType, editMode)
 	{
+		this.oilTankQuantity = 0;
 	}
 }
 

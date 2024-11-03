@@ -264,12 +264,13 @@ public class LevelGenerator : FSystem {
 	}
 
 	// Cr�er une entit� agent ou robot et y associer un panel container
-	private GameObject createEntity(string nameAgent, int gridX, int gridY, Direction.Dir direction, string type){
+	private GameObject createEntity(string nameAgent, int gridX, int gridY, Direction.Dir direction, string type ){
 		GameObject entity = null;
 		switch(type){
 			case "robot":
 			case "player": // backward compatibility
 				entity = GameObject.Instantiate<GameObject>(Resources.Load ("Prefabs/Robot Kyle") as GameObject, LevelGO.transform.position + new Vector3(gridY*3,1.5f,gridX*3), Quaternion.Euler(0,0,0), LevelGO.transform);
+				// entity.GetComponent<OilTank>().quantity = qte;
 				break;
 
 			case "rustyrobot":
