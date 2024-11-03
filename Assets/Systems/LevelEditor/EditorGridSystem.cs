@@ -234,7 +234,6 @@ public class EditorGridSystem : FSystem
 						inputLine = child.Attributes.GetNamedItem("inputLine").Value;
 						((PlayerRobot)paintableGrid.floorObjects[position]).inputLine = inputLine;
 						int oilTankQ = int.Parse(child.Attributes.GetNamedItem("oilTankQuantity").Value);
-						Debug.Log(oilTankQ);
 						((PlayerRobot)paintableGrid.floorObjects[position]).oilTankQuantity = oilTankQ;
 					}
 					catch
@@ -249,8 +248,10 @@ public class EditorGridSystem : FSystem
                         position = getPositionFromXElement(child);
                         orientation = (Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value);
                         setTile(position.Item1, position.Item2, Cell.RustyPlayer, orientation);
-                        /*inputLine = child.Attributes.GetNamedItem("inputLine").Value;
-                        ((RustyPlayerRobot)paintableGrid.floorObjects[position]).inputLine = inputLine;*/
+                        inputLine = child.Attributes.GetNamedItem("inputLine").Value;
+                        ((RustyPlayerRobot)paintableGrid.floorObjects[position]).inputLine = inputLine;
+						int oilTankQ = int.Parse(child.Attributes.GetNamedItem("oilTankQuantity").Value);
+						((RustyPlayerRobot)paintableGrid.floorObjects[position]).oilTankQuantity = oilTankQ;
                     }
                     catch
                     {
@@ -488,7 +489,10 @@ public class Door : FloorObject
 }
 
 public class Robot : FloorObject
+
 {
+
+	public int oilTankQuantity;
 	public string inputLine;
 
 	protected Robot(Cell cellType, string associatedScriptName, Direction.Dir orientation, int line, int col
@@ -501,7 +505,7 @@ public class Robot : FloorObject
 public class PlayerRobot : Robot
 {
 
-	public int oilTankQuantity;
+	
 	public PlayerRobot(string associatedScriptName, Direction.Dir orientation, int line, int col,
 		bool orientable = true, UIRootContainer.SolutionType scriptType = UIRootContainer.SolutionType.Undefined, UIRootContainer.EditMode editMode = UIRootContainer.EditMode.Editable) :
 		base(Cell.Player, associatedScriptName, orientation, line, col, orientable, scriptType, editMode)
@@ -512,10 +516,13 @@ public class PlayerRobot : Robot
 
 public class RustyPlayerRobot : Robot
 {
+
     public RustyPlayerRobot(string associatedScriptName, Direction.Dir orientation, int line, int col,
         bool orientable = true, UIRootContainer.SolutionType scriptType = UIRootContainer.SolutionType.Undefined, UIRootContainer.EditMode editMode = UIRootContainer.EditMode.Editable) :
         base(Cell.RustyPlayer, associatedScriptName, orientation, line, col, orientable, scriptType, editMode)
     {
+		this.oilTankQuantity = 0;
+
     }
 }
 

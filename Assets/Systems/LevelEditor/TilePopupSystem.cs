@@ -122,6 +122,16 @@ public class TilePopupSystem : FSystem
 					oilTankQuantityPopup.GetComponentInChildren<TMP_InputField>().text = pr.oilTankQuantity.ToString();
 					inputLinePopup.GetComponentInChildren<TMP_InputField>().text = pr.inputLine;
 					break;
+
+				case RustyPlayerRobot rr:
+					// enable popups
+					GameObjectManager.setGameObjectState(orientationPopup, true);
+					GameObjectManager.setGameObjectState(inputLinePopup, true);
+					GameObjectManager.setGameObjectState(oilTankQuantityPopup, true);
+					// load data
+					oilTankQuantityPopup.GetComponentInChildren<TMP_InputField>().text = rr.oilTankQuantity.ToString();
+					inputLinePopup.GetComponentInChildren<TMP_InputField>().text = rr.inputLine;
+					break;
 				case EnemyRobot er:
 					// enable popups
 					GameObjectManager.setGameObjectState(orientationPopup, true);
@@ -264,8 +274,7 @@ public class TilePopupSystem : FSystem
 
 	public void popupOilTankQuantity(string newData){
 		if(selectedObject != null){
-			Debug.Log("dans tile popup : " + newData);
-			((PlayerRobot)selectedObject).oilTankQuantity = int.Parse(newData);
+			((Robot)selectedObject).oilTankQuantity = int.Parse(newData);
 		}
 	}
 }

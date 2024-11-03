@@ -155,8 +155,9 @@ public class LevelGenerator : FSystem {
 					if (agentName != null && agentName.Value != "")
 						nameAgentByUser = agentName.Value;
 					Debug.Log("Création rusty robot with name : " + nameAgentByUser);
-                    GameObject agent = createEntity(Utility.extractLocale(nameAgentByUser), int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value),
-					(Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value), child.Name);
+
+                    GameObject agent = createEntity(Utility.extractLocale(nameAgentByUser), int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value ),
+					(Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value), child.Name,int.Parse(child.Attributes.GetNamedItem("oilTankQuantity").Value));
 					if (child.Name == "enemy" || child.Name == "guard")
 					{
 						agent.GetComponent<DetectRange>().range = int.Parse(child.Attributes.GetNamedItem("range").Value);
@@ -266,7 +267,7 @@ public class LevelGenerator : FSystem {
 	}
 
 	// Cr�er une entit� agent ou robot et y associer un panel container
-	private GameObject createEntity(string nameAgent, int gridX, int gridY, Direction.Dir direction, string type ){
+	private GameObject createEntity(string nameAgent, int gridX, int gridY, Direction.Dir direction, string type, int oilQ ){
 		GameObject entity = null;
 		switch(type){
 			case "robot":
@@ -285,12 +286,18 @@ public class LevelGenerator : FSystem {
 				break;
 		}
 
+
+
 		// Charger l'agent aux bonnes coordon�es dans la bonne direction
 		entity.GetComponent<Position>().x = gridX;
 		entity.GetComponent<Position>().y = gridY;
 		entity.GetComponent<Position>().targetX = -1;
 		entity.GetComponent<Position>().targetY = -1;
 		entity.GetComponent<Direction>().direction = direction;
+		
+		if(type == "player" || type == "rustyrobot"){
+			entity.GetComponent<OilTank>().quantity = oilQ;
+		}
 		
 		//add new container to entity
 		ScriptRef scriptref = entity.GetComponent<ScriptRef>();
