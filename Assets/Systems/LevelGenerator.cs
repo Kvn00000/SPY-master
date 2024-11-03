@@ -73,6 +73,7 @@ public class LevelGenerator : FSystem {
 	// Read xml document and create all game objects
 	public void XmlToLevel(XmlDocument doc)
 	{
+
 		gameData.totalActionBlocUsed = 0;
 		gameData.totalStep = 0;
 		gameData.totalExecute = 0;
@@ -81,7 +82,8 @@ public class LevelGenerator : FSystem {
 		// check if dialogs are defined in the scenario
 		bool dialogsOverrided = true;
 		DataLevel levelToLoad = gameData.scenarios[gameData.selectedScenario].levels[gameData.levelToLoad];
-		if (levelToLoad.overridedDialogs == null)
+
+        if (levelToLoad.overridedDialogs == null)
 		{
 			dialogsOverrided = false;
 			levelToLoad.overridedDialogs = new List<Dialog>();
@@ -94,8 +96,8 @@ public class LevelGenerator : FSystem {
 
 		XmlNode root = doc.ChildNodes[1];
 
-		// check if dragdropDisabled node exists and set gamedata accordingly
-		gameData.dragDropEnabled = doc.GetElementsByTagName("dragdropDisabled").Count == 0;
+        // check if dragdropDisabled node exists and set gamedata accordingly
+        gameData.dragDropEnabled = doc.GetElementsByTagName("dragdropDisabled").Count == 0;
 
 		foreach (XmlNode child in root.ChildNodes)
 		{

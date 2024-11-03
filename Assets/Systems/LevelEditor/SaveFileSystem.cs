@@ -252,7 +252,11 @@ public class SaveFileSystem : FSystem
 					Debug.Log("le save file ?"  + pr.oilTankQuantity);
 					levelExport += "\t<player inputLine=\""+ pr.inputLine + "\" posX=\"" + (pr.col + 1 - minCol) + "\" posY=\"" + (pr.line + 1 - minLine) + "\" direction=\"" + (int)pr.orientation +  "\" oilTankQuantity=\"" + pr.oilTankQuantity + "\" />\n\n";
 					break;
-				case EnemyRobot er:
+
+                case RustyPlayerRobot rpr:
+                    levelExport += "\t<rustyrobot inputLine=\"" + rpr.inputLine + "\" posX=\"" + (rpr.col + 1 - minCol) + "\" posY=\"" + (rpr.line + 1 - minLine) + "\" direction=\"" + (int)rpr.orientation + "\" />\n\n";
+                    break;
+                case EnemyRobot er:
 					levelExport += "\t<enemy inputLine=\"" + er.inputLine + "\" posX=\"" + (er.col + 1 - minCol) + "\" posY=\"" + (er.line + 1 - minLine) + "\" direction=\"" + (int)er.orientation + "\" range=\""+ er.range + "\" selfRange=\""+(er.selfRange ? "True" : "False") +"\" typeRange=\""+ (int)er.typeRange + "\" />\n\n";
 					break;
 				case DecorationObject deco:
@@ -289,6 +293,8 @@ public class SaveFileSystem : FSystem
 		}
 
 		levelExport += "</level>";
+
+		Debug.Log("Here : " + levelExport);
 		return levelExport;
 	}
 }
