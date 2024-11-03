@@ -329,6 +329,13 @@ public class CurrentActionManager : FSystem
 					}
 				}
 				break;
+			case "HasOil":
+				if (agent.GetComponent<OilTank>().quantity > 0 || agent.GetComponent<OilTank>().quantity < 0)
+				{
+					ifok = true;
+					break;
+				}
+				break;
 		}
 		// notification de l'évaluation 
 		GameObject notif = ele.target.transform.Find(ifok ? "true" : "false").gameObject;

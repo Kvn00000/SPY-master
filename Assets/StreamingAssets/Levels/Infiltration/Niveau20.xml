@@ -36,7 +36,8 @@
     <blockLimit blockType="RedArea" limit="0" />
     <blockLimit blockType="FieldGate" limit="0" />
     <blockLimit blockType="Terminal" limit="0" />
-    <blockLimit blockType="Exit" limit="-1" />
+	  <blockLimit blockType="Exit" limit="-1" />
+	  <blockLimit blockType="HasOil" limit="2" />
   </blockLimits>
   <door posY="7" posX="3" direction="0" slotId="0" />
     <rustyrobot inputLine="Erty/Plok" posY="6" posX="1" direction="2" />

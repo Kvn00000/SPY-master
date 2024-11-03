@@ -22,7 +22,8 @@ public class EditorGridSystem : FSystem
 	public Tile spawnTile;
 	public Tile teleportTile;
 	public Tile playerTile;
-	public Tile enemyTile;
+	public Tile rustyPlayerTile;
+    public Tile enemyTile;
 	public Tile decoTile;
 	public Tile doorTile;
 	public Tile consoleTile;
@@ -238,7 +239,22 @@ public class EditorGridSystem : FSystem
 						Debug.Log("Warning: Skipped player from file " + levelKey + ". Wrong data!");
 					}
 					break;
-				case "enemy":
+
+                case "rustyrobot":
+                    try
+                    {
+                        position = getPositionFromXElement(child);
+                        orientation = (Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value);
+                        setTile(position.Item1, position.Item2, Cell.RustyPlayer, orientation);
+                        /*inputLine = child.Attributes.GetNamedItem("inputLine").Value;
+                        ((RustyPlayerRobot)paintableGrid.floorObjects[position]).inputLine = inputLine;*/
+                    }
+                    catch
+                    {
+                        Debug.Log("Warning: Skipped player from file " + levelKey + ". Wrong data!");
+                    }
+                    break;
+                case "enemy":
 					try
 					{
 						position = getPositionFromXElement(child);
@@ -307,7 +323,8 @@ public class EditorGridSystem : FSystem
 					cell switch
 					{
 						Cell.Player => new PlayerRobot("Bob", rotation, line, col),
-						Cell.Enemy => new EnemyRobot("Eve", rotation, line, col),
+						Cell.RustyPlayer => new RustyPlayerRobot("Jacques", rotation, line, col),
+                        Cell.Enemy => new EnemyRobot("Eve", rotation, line, col),
 						Cell.Decoration => new DecorationObject(defaultDecoration, rotation, line, col),
 						Cell.Door => new Door(rotation, line, col),
 						Cell.Console => new Console(rotation, line, col),
@@ -371,7 +388,8 @@ public class EditorGridSystem : FSystem
 			Cell.Spawn => spawnTile,
 			Cell.Teleport => teleportTile,
 			Cell.Player => playerTile,
-			Cell.Enemy => enemyTile,
+            Cell.RustyPlayer => rustyPlayerTile,
+            Cell.Enemy => enemyTile,
 			Cell.Decoration => decoTile,
 			Cell.Door => doorTile,
 			Cell.Console => consoleTile,
@@ -402,7 +420,8 @@ public enum Cell
 	Door = 10003,
 	Console = 10004,
 	Jerrycan = 10006,
-	Coin = 10005
+	Coin = 10005,
+    RustyPlayer = 10007
 }
 
 public class FloorObject
@@ -483,6 +502,15 @@ public class PlayerRobot : Robot
 		base(Cell.Player, associatedScriptName, orientation, line, col, orientable, scriptType, editMode)
 	{
 	}
+}
+
+public class RustyPlayerRobot : Robot
+{
+    public RustyPlayerRobot(string associatedScriptName, Direction.Dir orientation, int line, int col,
+        bool orientable = true, UIRootContainer.SolutionType scriptType = UIRootContainer.SolutionType.Undefined, UIRootContainer.EditMode editMode = UIRootContainer.EditMode.Editable) :
+        base(Cell.RustyPlayer, associatedScriptName, orientation, line, col, orientable, scriptType, editMode)
+    {
+    }
 }
 
 public class EnemyRobot : Robot
