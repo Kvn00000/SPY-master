@@ -40,8 +40,8 @@
 	  <blockLimit blockType="HasOil" limit="2" />
   </blockLimits>
   <door posY="7" posX="3" direction="0" slotId="0" />
-    <rustyrobot inputLine="Erty/Plok" posY="6" posX="1" direction="2" />
-    <robot inputLine="Erty/Plok" posY="8" posX="1" direction="2" />
+    <rustyrobot inputLine="Erty/Plok" posY="6" posX="1" direction="2" oilTankQuantity="5"/>
+    <player inputLine="Erty/Plok" posY="8" posX="1" direction="2" />
     <jerrycan posY="6" posX="3" oilQuantity="69" />
     <jerrycan posY="8" posX="4" oilQuantity="69" />
 	
