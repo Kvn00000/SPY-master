@@ -154,10 +154,10 @@ public class LevelGenerator : FSystem {
 					}
 					if (agentName != null && agentName.Value != "")
 						nameAgentByUser = agentName.Value;
-					Debug.Log("Création rusty robot with name : " + nameAgentByUser);
 
+                    
                     GameObject agent = createEntity(Utility.extractLocale(nameAgentByUser), int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value ),
-					(Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value), child.Name,int.Parse(child.Attributes.GetNamedItem("oilTankQuantity").Value));
+					(Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value), child.Name, (child.Name == "robot" || child.Name == "player") ? -1 : int.Parse(child.Attributes.GetNamedItem("oilTankQuantity").Value));
 					if (child.Name == "enemy" || child.Name == "guard")
 					{
 						agent.GetComponent<DetectRange>().range = int.Parse(child.Attributes.GetNamedItem("range").Value);
