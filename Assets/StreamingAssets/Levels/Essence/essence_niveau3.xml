@@ -28,9 +28,9 @@
 		<blockLimit blockType="ForLoop" limit="0" />
 		<blockLimit blockType="While" limit="1" />
 		<blockLimit blockType="Forever" limit="0" />
-		<blockLimit blockType="AndOperator" limit="0" />
+		<blockLimit blockType="AndOperator" limit="1" />
 		<blockLimit blockType="OrOperator" limit="0" />
-		<blockLimit blockType="NotOperator" limit="1" />
+		<blockLimit blockType="NotOperator" limit="2" />
 		<blockLimit blockType="WallFront" limit="0" />
 		<blockLimit blockType="HasOil" limit="2" />
 		<blockLimit blockType="WallLeft" limit="0" />
@@ -42,7 +42,7 @@
 		<blockLimit blockType="RedArea" limit="0" />
 		<blockLimit blockType="FieldGate" limit="0" />
 		<blockLimit blockType="Terminal" limit="0" />
-		<blockLimit blockType="Exit" limit="0" />
+		<blockLimit blockType="Exit" limit="1" />
 	</blockLimits>
 
 	<rustyrobot inputLine="Jacques" posX="2" posY="7" direction="2" oilTankQuantity="5" />
