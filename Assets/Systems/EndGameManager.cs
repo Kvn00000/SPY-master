@@ -76,10 +76,21 @@ public class EndGameManager : FSystem {
 					if (player.GetComponent<Position>().x == exit.GetComponent<Position>().x && player.GetComponent<Position>().y == exit.GetComponent<Position>().y)
 					{
 						nbEnd++;
-						// if all players reached end position
-						if (nbEnd >= f_exit.Count)
+
+						// if one player reached end position among multiple end position
+						// used in level "essence_niveau4", may need to generalize if f_player.Count > f_exit.Count
+						if (f_player.Count == 1)
+						{
+							Debug.Log("Plusieurs sorties, le robot est arrivé sur l'une d'elles");
+                            GameObjectManager.addComponent<NewEnd>(MainLoop.instance.gameObject, new { endType = NewEnd.Win });
+
+                        }
+                        // if all players reached end position
+                        if (nbEnd >= f_exit.Count){
+
 							// trigger end
 							GameObjectManager.addComponent<NewEnd>(MainLoop.instance.gameObject, new { endType = NewEnd.Win });
+						}
 					}
 				}
 			}
