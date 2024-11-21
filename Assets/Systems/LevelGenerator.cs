@@ -276,6 +276,7 @@ public class LevelGenerator : FSystem {
 				// entity.GetComponent<OilTank>().quantity = qte;
 				break;
 
+			case "rustyplayer":
 			case "rustyrobot":
 				Debug.Log("Lecture rusty robot");
                 entity = GameObject.Instantiate<GameObject>(Resources.Load("Prefabs/Rusty Robot Kyle") as GameObject, LevelGO.transform.position + new Vector3(gridY * 3, 1.5f, gridX * 3), Quaternion.Euler(0, 0, 0), LevelGO.transform);
