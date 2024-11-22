@@ -38,7 +38,10 @@ public class TooltipContent : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }else if(text.Contains("#agentName")){
             formatedContent = text.Replace("#agentName", GetComponent<AgentEdit>().associatedScriptName);
         }
-
+        if (text.Contains("#showOilQuantity"))  
+        {
+            formatedContent = text.Replace("#showOilQuantity", ""+GetComponent<JerrycanQuantity>().quantity);
+        }
         tooltip.ShowTooltip(formatedContent);
         isOver = true;
     }
