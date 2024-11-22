@@ -1401,6 +1401,10 @@ MonoBehaviour:
     m_Key: EditorScene/MapEditorCanvas/Popups/FuelQuantity/Text
     m_Metadata:
       m_Items: []
+  - m_Id: 177267845336649728
+    m_Key: Rusty Robot/Rusty Robot
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

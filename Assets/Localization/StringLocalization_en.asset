@@ -600,8 +600,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 26103297396736
-    m_Localized: '#agentName<br>#oilTank litres d''essence <br>clique pour voir mon<br>comportement
-      !'
+    m_Localized: '#agentName<br>clique pour voir mon<br>comportement !'
     m_Metadata:
       m_Items: []
   - m_Id: 26381211979776
@@ -1340,6 +1339,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 165177455611727872
     m_Localized: Fuel Quantity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177267845336649728
+    m_Localized: '#rustyName<br>clique pour voir mon<br>comportement !'
     m_Metadata:
       m_Items: []
   references:

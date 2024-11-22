@@ -24,22 +24,21 @@ public class TooltipContent : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         string formatedContent = text;
-        if (text.Contains("#agentName"))
+        if (text.Contains("#rustyName"))
         {
             if (GetComponent<OilTank>().quantity >= 0)
             {
-                formatedContent = text.Replace("#agentName", GetComponent<AgentEdit>().associatedScriptName + "<br>Niveau d'essence: " + GetComponent<OilTank>().quantity);
+                formatedContent = text.Replace("#rustyName", GetComponent<AgentEdit>().associatedScriptName + "<br>Niveau d'essence: " + GetComponent<OilTank>().quantity);
             }
             else
             {
-                formatedContent = text.Replace("#agentName", GetComponent<AgentEdit>().associatedScriptName + "<br>Niveau d'essence: ∞ Infini");
+                formatedContent = text.Replace("#rustyName", GetComponent<AgentEdit>().associatedScriptName + "<br>Niveau d'essence: ∞ Infini ");
 
             }
+        }else if(text.Contains("#agentName")){
+            formatedContent = text.Replace("#agentName", GetComponent<AgentEdit>().associatedScriptName);
         }
-        if (text.Contains("#showOilQuantity"))
-        {
-            formatedContent = text.Replace("#showOilQuantity", ""+GetComponent<JerrycanQuantity>().quantity);
-        }
+
         tooltip.ShowTooltip(formatedContent);
         isOver = true;
     }
