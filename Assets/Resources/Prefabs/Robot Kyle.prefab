@@ -1870,7 +1870,6 @@ GameObject:
   - component: {fileID: -4398288742179866985}
   - component: {fileID: 176730054516014038}
   - component: {fileID: 6444491553609950384}
-  - component: {fileID: 8712950693842065743}
   - component: {fileID: 5569345245400026149}
   m_Layer: 0
   m_Name: Robot Kyle
@@ -2096,19 +2095,6 @@ MonoBehaviour:
           m_WaitForCompletion: 0
           m_LocalVariables: []
         m_PropertyPath: text
---- !u!114 &8712950693842065743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5823726797354950846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 107c33970812b854d885add72e790b72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quantity: -1
 --- !u!82 &5569345245400026149
 AudioSource:
   m_ObjectHideFlags: 0
