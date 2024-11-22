@@ -1361,6 +1361,10 @@ MonoBehaviour:
     m_Localized: "Quantit\xE9 d'essence"
     m_Metadata:
       m_Items: []
+  - m_Id: 177267845336649728
+    m_Localized: '#rustyName<br>clique pour voir mon<br>comportement !'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

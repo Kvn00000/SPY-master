@@ -117,9 +117,9 @@ public class TilePopupSystem : FSystem
 					// enable popups
 					GameObjectManager.setGameObjectState(orientationPopup, true);
 					GameObjectManager.setGameObjectState(inputLinePopup, true);
-					GameObjectManager.setGameObjectState(oilTankQuantityPopup, true);
+					// GameObjectManager.setGameObjectState(oilTankQuantityPopup, true);
 					// load data
-					oilTankQuantityPopup.GetComponentInChildren<TMP_InputField>().text = pr.oilTankQuantity.ToString();
+					// oilTankQuantityPopup.GetComponentInChildren<TMP_InputField>().text = pr.oilTankQuantity.ToString();
 					inputLinePopup.GetComponentInChildren<TMP_InputField>().text = pr.inputLine;
 					break;
 
@@ -274,7 +274,7 @@ public class TilePopupSystem : FSystem
 
 	public void popupOilTankQuantity(string newData){
 		if(selectedObject != null){
-			((Robot)selectedObject).oilTankQuantity = int.Parse(newData);
+			((RustyPlayerRobot)selectedObject).oilTankQuantity = int.Parse(newData);
 		}
 	}
 }

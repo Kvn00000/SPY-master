@@ -155,9 +155,15 @@ public class LevelGenerator : FSystem {
 					if (agentName != null && agentName.Value != "")
 						nameAgentByUser = agentName.Value;
 
-                    
-                    GameObject agent = createEntity(Utility.extractLocale(nameAgentByUser), int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value ),
-					(Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value), child.Name, (child.Name == "rustyplayer" || child.Name == "rustyrobot") ? int.Parse(child.Attributes.GetNamedItem("oilTankQuantity").Value) : -1);
+					GameObject agent;
+					if(child.Name == "rustyrobot"){
+						agent = createEntity(Utility.extractLocale(nameAgentByUser), int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value ),
+						(Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value), child.Name,  int.Parse(child.Attributes.GetNamedItem("oilTankQuantity").Value));
+
+					}else{
+						agent = createEntity(Utility.extractLocale(nameAgentByUser), int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value ),
+						(Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value), child.Name, -1);
+					}
 					if (child.Name == "enemy" || child.Name == "guard")
 					{
 						agent.GetComponent<DetectRange>().range = int.Parse(child.Attributes.GetNamedItem("range").Value);
@@ -280,6 +286,7 @@ public class LevelGenerator : FSystem {
 			case "rustyrobot":
 				Debug.Log("Lecture rusty robot");
                 entity = GameObject.Instantiate<GameObject>(Resources.Load("Prefabs/Rusty Robot Kyle") as GameObject, LevelGO.transform.position + new Vector3(gridY * 3, 1.5f, gridX * 3), Quaternion.Euler(0, 0, 0), LevelGO.transform);
+				
 				break;
             case "guard":
 			case "enemy": // backward compatibility
@@ -296,7 +303,7 @@ public class LevelGenerator : FSystem {
 		entity.GetComponent<Position>().targetY = -1;
 		entity.GetComponent<Direction>().direction = direction;
 		
-		if(type == "player" || type == "rustyrobot"){
+		if(type == "rustyrobot"){
 			entity.GetComponent<OilTank>().quantity = oilQ;
 		}
 		

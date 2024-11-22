@@ -249,7 +249,7 @@ public class SaveFileSystem : FSystem
 					levelExport += "\t<door posX=\"" + (d.col+1 - minCol) + "\" posY=\"" + (d.line+ 1 - minLine) + "\" slotId=\""+ d.slot + "\" direction=\""+ (int)d.orientation + "\" />\n\n";
 					break;
 				case PlayerRobot pr:
-					levelExport += "\t<player inputLine=\""+ pr.inputLine + "\" posX=\"" + (pr.col + 1 - minCol) + "\" posY=\"" + (pr.line + 1 - minLine) + "\" direction=\"" + (int)pr.orientation +  "\" oilTankQuantity=\"" + pr.oilTankQuantity + "\" />\n\n";
+					levelExport += "\t<player inputLine=\""+ pr.inputLine + "\" posX=\"" + (pr.col + 1 - minCol) + "\" posY=\"" + (pr.line + 1 - minLine) + "\" direction=\"" + (int)pr.orientation +  "\" />\n\n";
 					break;
                 case RustyPlayerRobot rpr:
                     levelExport += "\t<rustyrobot inputLine=\"" + rpr.inputLine + "\" posX=\"" + (rpr.col + 1 - minCol) + "\" posY=\"" + (rpr.line + 1 - minLine) + "\" direction=\"" + (int)rpr.orientation  +  "\" oilTankQuantity=\"" + rpr.oilTankQuantity + "\" />\n\n";
