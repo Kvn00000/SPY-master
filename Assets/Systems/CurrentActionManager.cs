@@ -330,7 +330,7 @@ public class CurrentActionManager : FSystem
 				}
 				break;
 			case "HasOil":
-				if (agent.GetComponent<OilTank>().quantity > 0 || agent.GetComponent<OilTank>().quantity < 0)
+				if (agent.GetComponent<OilTank>() && agent.GetComponent<OilTank>().quantity > 0 || !agent.GetComponent<OilTank>())
 				{
 					ifok = true;
 					break;

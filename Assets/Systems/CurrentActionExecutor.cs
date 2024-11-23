@@ -140,7 +140,7 @@ public class CurrentActionExecutor : FSystem
 
 				foreach (GameObject actGo in f_activableOil)
 				{
-					if (actGo.GetComponent<Position>().x == agentPosi.x && actGo.GetComponent<Position>().y == agentPosi.y)
+					if (actGo.GetComponent<Position>().x == agentPosi.x && actGo.GetComponent<Position>().y == agentPosi.y && ca.agent.GetComponent<OilTank>())
 					{
 						// 2nd parameter : oil distributor
 						ApplyAddOil(ca.agent, actGo);
