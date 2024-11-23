@@ -161,110 +161,83 @@ public class CurrentActionExecutor : FSystem
 		Position pos = go.GetComponent<Position>();
 		OilTank ot = go.GetComponent<OilTank>();
 
-		// Case rusty robot
-		if (ot != null)
+		// Check if can move, return true for normal robot by default, check if has oil for rusty robot
+		if (isAllowedToMove(ot))
 		{
-			if (ot.quantity > 0)
+			
+			switch (go.GetComponent<Direction>().direction)
 			{
-				switch (go.GetComponent<Direction>().direction)
-				{
-					case Direction.Dir.North:
-						if (!checkObstacle(pos.x, pos.y - 1))
-						{
-							pos.targetX = pos.x;
-							pos.targetY = pos.y - 1;
-							ot.quantity -= 1;
-						}
-						else
-							GameObjectManager.addComponent<ForceMoveAnimation>(go);
-						break;
-					case Direction.Dir.South:
-						if (!checkObstacle(pos.x, pos.y + 1))
-						{
-							pos.targetX = pos.x;
-							pos.targetY = pos.y + 1;
-							ot.quantity -= 1;
-						}
-						else
-							GameObjectManager.addComponent<ForceMoveAnimation>(go);
-						break;
-					case Direction.Dir.East:
-						if (!checkObstacle(pos.x + 1, pos.y))
-						{
-							pos.targetX = pos.x + 1;
-							pos.targetY = pos.y;
-							ot.quantity -= 1;
-						}
-						else
-							GameObjectManager.addComponent<ForceMoveAnimation>(go);
-						break;
-					case Direction.Dir.West:
-						if (!checkObstacle(pos.x - 1, pos.y))
-						{
-							pos.targetX = pos.x - 1;
-							pos.targetY = pos.y;
-							ot.quantity -= 1;
+				case Direction.Dir.North:
+					if (!checkObstacle(pos.x, pos.y - 1))
+					{
+						pos.targetX = pos.x;
+						pos.targetY = pos.y - 1;
+						if (ot) ot.quantity -= 1;
 
-						}
-						else
-							GameObjectManager.addComponent<ForceMoveAnimation>(go);
-						break;
-				}
+                    }
+					else
+						GameObjectManager.addComponent<ForceMoveAnimation>(go);
+					break;
+				case Direction.Dir.South:
+					if (!checkObstacle(pos.x, pos.y + 1))
+					{
+						pos.targetX = pos.x;
+						pos.targetY = pos.y + 1;
+                        if (ot) ot.quantity -= 1;
+					}
+					else
+						GameObjectManager.addComponent<ForceMoveAnimation>(go);
+					break;
+				case Direction.Dir.East:
+					if (!checkObstacle(pos.x + 1, pos.y))
+					{
+						pos.targetX = pos.x + 1;
+						pos.targetY = pos.y;
+                        if (ot) ot.quantity -= 1;
+					}
+					else
+						GameObjectManager.addComponent<ForceMoveAnimation>(go);
+					break;
+				case Direction.Dir.West:
+					if (!checkObstacle(pos.x - 1, pos.y))
+					{
+						pos.targetX = pos.x - 1;
+						pos.targetY = pos.y;
+                        if (ot) ot.quantity -= 1;
+
+					}
+					else
+						GameObjectManager.addComponent<ForceMoveAnimation>(go);
+					break;
 			}
-			else
-			{
-				Debug.Log("Je n'ai plus d'dessence !");
-			}
+			
+			
 		}
-
-		// Case normal robot (without oil tank)
-		else
-		{
-            switch (go.GetComponent<Direction>().direction)
-            {
-                case Direction.Dir.North:
-                    if (!checkObstacle(pos.x, pos.y - 1))
-                    {
-                        pos.targetX = pos.x;
-                        pos.targetY = pos.y - 1;
-                    }
-                    else
-                        GameObjectManager.addComponent<ForceMoveAnimation>(go);
-                    break;
-                case Direction.Dir.South:
-                    if (!checkObstacle(pos.x, pos.y + 1))
-                    {
-                        pos.targetX = pos.x;
-                        pos.targetY = pos.y + 1;
-                    }
-                    else
-                        GameObjectManager.addComponent<ForceMoveAnimation>(go);
-                    break;
-                case Direction.Dir.East:
-                    if (!checkObstacle(pos.x + 1, pos.y))
-                    {
-                        pos.targetX = pos.x + 1;
-                        pos.targetY = pos.y;
-                    }
-                    else
-                        GameObjectManager.addComponent<ForceMoveAnimation>(go);
-                    break;
-                case Direction.Dir.West:
-                    if (!checkObstacle(pos.x - 1, pos.y))
-                    {
-                        pos.targetX = pos.x - 1;
-                        pos.targetY = pos.y;
-
-                    }
-                    else
-                        GameObjectManager.addComponent<ForceMoveAnimation>(go);
-                    break;
-            }
-        }
 
 	}
 
-	private void ApplyTurnLeft(GameObject go)
+	private bool isAllowedToMove(OilTank ot)
+	{
+		if (ot == null)
+		{
+			return true;
+		}
+
+		else
+		{
+			if (ot.quantity > 0)
+			{
+				return true;
+			}
+			else
+			{
+				Debug.Log("Je n'ai plus d'essence !");
+				return false;
+			}
+		}
+    }
+
+    private void ApplyTurnLeft(GameObject go)
 	{
 		switch (go.GetComponent<Direction>().direction)
 		{
