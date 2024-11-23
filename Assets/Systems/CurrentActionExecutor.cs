@@ -160,55 +160,107 @@ public class CurrentActionExecutor : FSystem
 	{
 		Position pos = go.GetComponent<Position>();
 		OilTank ot = go.GetComponent<OilTank>();
-		if (ot.quantity != 0)
-		{
-			switch (go.GetComponent<Direction>().direction)
-			{
-				case Direction.Dir.North:
-					if (!checkObstacle(pos.x, pos.y - 1))
-					{
-						pos.targetX = pos.x;
-						pos.targetY = pos.y - 1;
-						ot.quantity -= 1;
-					}
-					else
-						GameObjectManager.addComponent<ForceMoveAnimation>(go);
-					break;
-				case Direction.Dir.South:
-					if (!checkObstacle(pos.x, pos.y + 1))
-					{
-						pos.targetX = pos.x;
-						pos.targetY = pos.y + 1;
-						ot.quantity -= 1;
-					}
-					else
-						GameObjectManager.addComponent<ForceMoveAnimation>(go);
-					break;
-				case Direction.Dir.East:
-					if (!checkObstacle(pos.x + 1, pos.y))
-					{
-						pos.targetX = pos.x + 1;
-						pos.targetY = pos.y;
-						ot.quantity -= 1;
-					}
-					else
-						GameObjectManager.addComponent<ForceMoveAnimation>(go);
-					break;
-				case Direction.Dir.West:
-					if (!checkObstacle(pos.x - 1, pos.y))
-					{
-						pos.targetX = pos.x - 1;
-						pos.targetY = pos.y;
-						ot.quantity -= 1;
 
-					}
-					else
-						GameObjectManager.addComponent<ForceMoveAnimation>(go);
-					break;
+		// Case rusty robot
+		if (ot != null)
+		{
+			if (ot.quantity > 0)
+			{
+				switch (go.GetComponent<Direction>().direction)
+				{
+					case Direction.Dir.North:
+						if (!checkObstacle(pos.x, pos.y - 1))
+						{
+							pos.targetX = pos.x;
+							pos.targetY = pos.y - 1;
+							ot.quantity -= 1;
+						}
+						else
+							GameObjectManager.addComponent<ForceMoveAnimation>(go);
+						break;
+					case Direction.Dir.South:
+						if (!checkObstacle(pos.x, pos.y + 1))
+						{
+							pos.targetX = pos.x;
+							pos.targetY = pos.y + 1;
+							ot.quantity -= 1;
+						}
+						else
+							GameObjectManager.addComponent<ForceMoveAnimation>(go);
+						break;
+					case Direction.Dir.East:
+						if (!checkObstacle(pos.x + 1, pos.y))
+						{
+							pos.targetX = pos.x + 1;
+							pos.targetY = pos.y;
+							ot.quantity -= 1;
+						}
+						else
+							GameObjectManager.addComponent<ForceMoveAnimation>(go);
+						break;
+					case Direction.Dir.West:
+						if (!checkObstacle(pos.x - 1, pos.y))
+						{
+							pos.targetX = pos.x - 1;
+							pos.targetY = pos.y;
+							ot.quantity -= 1;
+
+						}
+						else
+							GameObjectManager.addComponent<ForceMoveAnimation>(go);
+						break;
+				}
 			}
-		}else{
-			Debug.Log("Je nai [plus ] dessence aajajfm");
+			else
+			{
+				Debug.Log("Je n'ai plus d'dessence !");
+			}
 		}
+
+		// Case normal robot (without oil tank)
+		else
+		{
+            switch (go.GetComponent<Direction>().direction)
+            {
+                case Direction.Dir.North:
+                    if (!checkObstacle(pos.x, pos.y - 1))
+                    {
+                        pos.targetX = pos.x;
+                        pos.targetY = pos.y - 1;
+                    }
+                    else
+                        GameObjectManager.addComponent<ForceMoveAnimation>(go);
+                    break;
+                case Direction.Dir.South:
+                    if (!checkObstacle(pos.x, pos.y + 1))
+                    {
+                        pos.targetX = pos.x;
+                        pos.targetY = pos.y + 1;
+                    }
+                    else
+                        GameObjectManager.addComponent<ForceMoveAnimation>(go);
+                    break;
+                case Direction.Dir.East:
+                    if (!checkObstacle(pos.x + 1, pos.y))
+                    {
+                        pos.targetX = pos.x + 1;
+                        pos.targetY = pos.y;
+                    }
+                    else
+                        GameObjectManager.addComponent<ForceMoveAnimation>(go);
+                    break;
+                case Direction.Dir.West:
+                    if (!checkObstacle(pos.x - 1, pos.y))
+                    {
+                        pos.targetX = pos.x - 1;
+                        pos.targetY = pos.y;
+
+                    }
+                    else
+                        GameObjectManager.addComponent<ForceMoveAnimation>(go);
+                    break;
+            }
+        }
 
 	}
 
