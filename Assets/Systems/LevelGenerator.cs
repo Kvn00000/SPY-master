@@ -143,9 +143,9 @@ public class LevelGenerator : FSystem {
 
                 case "robot":
 				case "guard":
-				case "rustyrobot":
-				case "rustyplayer":
-				case "player": // backward compatibility
+				case "rustyrobot": // backward compatibility, permet de créer un robot ancien
+                case "rustyplayer":// backward compatibility, permet de créer un robot ancien
+                case "player": // backward compatibility
 				case "enemy": // backward compatibility
 					string nameAgentByUser = "";
 					XmlNode agentName = child.Attributes.GetNamedItem("inputLine");
@@ -283,7 +283,7 @@ public class LevelGenerator : FSystem {
 				break;
 
 			case "rustyplayer":
-			case "rustyrobot"://Create a rusty robot
+			case "rustyrobot": // Crée un ancien robot (rouillé) à essence
 				Debug.Log("Lecture rusty robot");
                 entity = GameObject.Instantiate<GameObject>(Resources.Load("Prefabs/Rusty Robot Kyle") as GameObject, LevelGO.transform.position + new Vector3(gridY * 3, 1.5f, gridX * 3), Quaternion.Euler(0, 0, 0), LevelGO.transform);
 				

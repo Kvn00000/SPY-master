@@ -136,11 +136,14 @@ public class CurrentActionExecutor : FSystem
 				break;
 
 			case BasicAction.ActionType.DrinkOil:
+				// Cas où une action "DrinkOil" a été entrée dans le code
 				Position agentPosi = ca.agent.GetComponent<Position>();
 
 				foreach (GameObject actGo in f_activableOil)
+				// On boucle sur tous les Jerrycan présents dans le niveau
 				{
 					if (actGo.GetComponent<Position>().x == agentPosi.x && actGo.GetComponent<Position>().y == agentPosi.y && ca.agent.GetComponent<OilTank>())
+					// Si le robot se trouve sur la mêm^me case qu'un Jerrycan, ET que notre robot est bien un robot rouillé (= possède un réservoir d'essence (OilTank))
 					{
 						// 2nd parameter : oil distributor
 						ApplyAddOil(ca.agent, actGo);
@@ -217,8 +220,10 @@ public class CurrentActionExecutor : FSystem
 	}
 
 	private bool isAllowedToMove(OilTank ot)
+	// Autorise (ou non) un robot à se déplacer
 	{
 		if (ot == null)
+		// Cas du robot "normal" (n'a pas d'OilTank, est forcément autorisé à se déplacer)
 		{
 			return true;
 		}
@@ -226,10 +231,12 @@ public class CurrentActionExecutor : FSystem
 		else
 		{
 			if (ot.quantity > 0)
+			// Si le robot a de l'essence, est autorisé à se déplacer
 			{
 				return true;
 			}
 			else
+			// Si pas d'essence
 			{
 				Debug.Log("Je n'ai plus d'essence !");
 				return false;
@@ -258,15 +265,14 @@ public class CurrentActionExecutor : FSystem
 
 	private void ApplyAddOil(GameObject go, GameObject jerrycan)
 	{
-		// Empêche le robot de boire l'essence s'il a essence négative (= essence infinie)
-		if (go.GetComponent<OilTank>().quantity >= 0)
-		{
-            go.GetComponent<OilTank>().quantity += jerrycan.GetComponent<JerrycanQuantity>().quantity;
-            go.GetComponent<Animator>().SetTrigger("Action");
-            go.GetComponent<AudioSource>().Play();
-            GameObjectManager.unbind(jerrycan);
-            UnityEngine.Object.Destroy(jerrycan);
-        }
+		
+		// Ajoute l'essence contenue dans un jerrycan à un robot ayant un réservoir
+        go.GetComponent<OilTank>().quantity += jerrycan.GetComponent<JerrycanQuantity>().quantity;
+        go.GetComponent<Animator>().SetTrigger("Action");
+        go.GetComponent<AudioSource>().Play();
+        GameObjectManager.unbind(jerrycan);
+        UnityEngine.Object.Destroy(jerrycan);
+        
 	}
 
 	private void ApplyTurnRight(GameObject go)

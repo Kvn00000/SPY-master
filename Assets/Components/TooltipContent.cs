@@ -25,6 +25,7 @@ public class TooltipContent : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         string formatedContent = text;
         if (text.Contains("#rustyName"))
+        // Permet de faire la "TooltipContent" propre aux anciens robots (nécessite d'afficher la quantité d'essence dans le réservoir)
         {
             if (GetComponent<OilTank>().quantity >= 0)
             {   

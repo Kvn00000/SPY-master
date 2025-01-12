@@ -34,7 +34,7 @@ public class EditorGridSystem_wrapper : BaseWrapper
 		MainLoop.initAppropriateSystemField (system, "doorTile", doorTile);
 		MainLoop.initAppropriateSystemField (system, "consoleTile", consoleTile);
 		MainLoop.initAppropriateSystemField (system, "coinTile", coinTile);
-		MainLoop.initAppropriateSystemField (system, "jerrycanTile", jerrycanTile);
+		MainLoop.initAppropriateSystemField (system, "jerrycanTile", jerrycanTile); // Ajout de la tuile "Jerrycan"
 		MainLoop.initAppropriateSystemField (system, "placingCursor", placingCursor);
 		MainLoop.initAppropriateSystemField (system, "defaultDecoration", defaultDecoration);
 		MainLoop.initAppropriateSystemField (system, "paintableGrid", paintableGrid);

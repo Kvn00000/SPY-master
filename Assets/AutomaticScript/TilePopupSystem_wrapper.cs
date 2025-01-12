@@ -20,7 +20,7 @@ public class TilePopupSystem_wrapper : BaseWrapper
 		MainLoop.initAppropriateSystemField (system, "inputLinePopup", inputLinePopup);
 		MainLoop.initAppropriateSystemField (system, "rangePopup", rangePopup);
 		MainLoop.initAppropriateSystemField (system, "consoleSlotsPopup", consoleSlotsPopup);
-		MainLoop.initAppropriateSystemField (system, "oilQuantityPopup", oilQuantityPopup);
+		MainLoop.initAppropriateSystemField (system, "oilQuantityPopup", oilQuantityPopup); // Ajout de la popup pour les jerrycans
 		MainLoop.initAppropriateSystemField (system, "oilTankQuantityPopup", oilTankQuantityPopup);
 		MainLoop.initAppropriateSystemField (system, "doorSlotPopup", doorSlotPopup);
 		MainLoop.initAppropriateSystemField (system, "furniturePopup", furniturePopup);

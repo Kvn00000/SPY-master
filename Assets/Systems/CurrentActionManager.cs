@@ -330,6 +330,7 @@ public class CurrentActionManager : FSystem
 				}
 				break;
 			case "HasOil": // jerrycan
+				// Permet de vérifier si notre robot a de l'essence dans son réservoir (utilisé par la suite dans les blocs if / else / while...)
 				if (agent.GetComponent<OilTank>() && agent.GetComponent<OilTank>().quantity > 0 || !agent.GetComponent<OilTank>())
 				{
 					ifok = true;

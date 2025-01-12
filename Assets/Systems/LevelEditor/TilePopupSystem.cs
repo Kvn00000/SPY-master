@@ -19,7 +19,7 @@ public class TilePopupSystem : FSystem
 	public GameObject inputLinePopup;
 	public GameObject rangePopup;
 	public GameObject consoleSlotsPopup;
-	public GameObject oilQuantityPopup;
+	public GameObject oilQuantityPopup; // Ajout des popup spécifiques aux jerrycans dans l'éditeur
 	public GameObject oilTankQuantityPopup;
 	public GameObject doorSlotPopup;
 	public GameObject furniturePopup;
