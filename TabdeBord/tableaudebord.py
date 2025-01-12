@@ -106,6 +106,7 @@ def update_temps_mini_to_user(user_id):
     temps_mini = dict()
     all_times_per_level = dict()
     obtained_scores = dict()
+    last_scores = []
 
     format_str = "%Y-%m-%dT%H:%M:%S.%fZ"
 
@@ -122,16 +123,25 @@ def update_temps_mini_to_user(user_id):
         if niveau not in temps_mini.keys():
             temps_mini[niveau] = delta_secs
             all_times_per_level[niveau] = [delta_secs]
-            obtained_scores[niveau] = [int(completed_data[i]["result"]["extensions"]["https://spy.lip6.fr/xapi/extensions/score"][0])]
+            score = int(completed_data[i]["result"]["extensions"]["https://spy.lip6.fr/xapi/extensions/score"][0])
+            obtained_scores[niveau] = [score]
+            if len(last_scores) < 20:
+                last_scores.append((niveau, score))
+
 
 
         else:
             if delta_secs < temps_mini[niveau]:
                 temps_mini[niveau] = delta_secs
             all_times_per_level[niveau].append(delta_secs)
-            obtained_scores[niveau].append(int(completed_data[i]["result"]["extensions"]["https://spy.lip6.fr/xapi/extensions/score"][0]))
+            score = int(completed_data[i]["result"]["extensions"]["https://spy.lip6.fr/xapi/extensions/score"][0])
+            obtained_scores[niveau].append(score)
+            if len(last_scores) < 20:
+                last_scores.append((niveau, score))
+                
 
-    return temps_mini, all_times_per_level, obtained_scores
+
+    return temps_mini, all_times_per_level, obtained_scores, last_scores
 
 def update_inserted_to_user(user_id):
 
@@ -161,7 +171,7 @@ learners_ids = ['6DFE62E7']
 
 # Récupère les données de l'utilisateur
 lid = learners_ids[0]
-temps_mini, all_times_per_level, scores = update_temps_mini_to_user(lid)
+temps_mini, all_times_per_level, scores, last_scores = update_temps_mini_to_user(lid)
 all_times_per_level = dict([(k, v[::-1]) for (k,v) in all_times_per_level.items()])
 
 inserted = update_inserted_to_user(lid)
@@ -187,15 +197,16 @@ for level in dico_scores.keys():
 # Exemple de données pour les 20 derniers niveaux joués (à adapter en fonction des vraies données)
 last_played_levels = []
 
-for level in list(scores.keys())[-20:]:
+for level, score in last_scores:
     twoStars, threeStars = dico_scores[level].values()
     maxScore = max(scores[level])
-    if maxScore >= int(threeStars):
-        last_played_levels.append({"Nom du niveau": level, "Nombre d'étoiles": 3, "Score max": max(scores[level])})
-    elif maxScore >= int(twoStars):
-        last_played_levels.append({"Nom du niveau": level, "Nombre d'étoiles": 2, "Score max": max(scores[level])})
+    if score >= int(threeStars):
+        last_played_levels.append({"Nom du niveau": level, "Nombre d'étoiles": "⭐⭐⭐", "Score": score})
+    elif score >= int(twoStars):
+        last_played_levels.append({"Nom du niveau": level, "Nombre d'étoiles": "⭐⭐", "Score": score})
     else:
-        last_played_levels.append({"Nom du niveau": level, "Nombre d'étoiles": 1, "Score max": max(scores[level])})
+        last_played_levels.append({"Nom du niveau": level, "Nombre d'étoiles": "⭐", "Score": score})
+
 
 
 
@@ -343,7 +354,7 @@ app.layout = html.Div([
                 columns=[
                     {"name": "Nom du niveau", "id": "Nom du niveau", "type": "text"},
                     {"name": "Nombre d'étoiles", "id": "Nombre d'étoiles", "type": "numeric"},
-                    {"name": "Score max", "id": "Score max", "type": "numeric"}
+                    {"name": "Score", "id": "Score", "type": "numeric"}
                 ],
                 data=last_played_levels,  # Charger les données
                 sort_action="native",  # Permettre le tri interactif

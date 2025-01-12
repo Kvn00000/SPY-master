@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<scenario name="Essence	" desc="Introduction à la notion de variable en programmation.">
+	<level src = "Levels/Essence/Niveau1.xml" name = "Niveau1" >
+		<dialogs>
+			<dialog text ="Bonjour agent spécial !
+
+Mauvaise nouvelle, nos nouveaux robots sont tombés en panne, temporairement, nous aurons accès qu'à des anciens modèles..." enableInteraction ="1" />
+			<dialog text ="Ces robots fonctionnent avec de l'essence, et n'ont qu'une quantité limitée d'essence.
+
+Tu ne pourras te déplacer qu'au maximum, d'autant de cases que nos robots ont d'essence.
+Tu peux à tout moment vérifier la quantité d'essence que possède un robot dans son réservoir en passant ta souris dessus." img="[fr]robots_oil.png[/fr][en]robots_oil.png[/en]" enableInteraction ="1" />
+		</dialogs>
+	</level>
+	<level src = "Levels/Essence/Niveau2.xml" name = "Niveau2" >
+		<dialogs>
+			<dialog text ="Pour cette mission, nous pouvons indiquer à notre robot d'avancer une seule fois seulement. Il va falloir être astucieux.
+
+Vous avez la possibilité dans vos instructions d'indiquer à votre robot de vérifier son niveau d'essence." img="[fr]has_oil_captor.png[/fr][en]has_oil_captor.png[/en]" enableInteraction ="1" />
+		</dialogs>
+	</level>
+	<level src = "Levels/Essence/Niveau3.xml" name = "Niveau3" >
+		<dialogs>
+			<dialog text ="Notre robot n'a ici, pas suffisamment d'essence pour rejoindre la sortie dès le début, il va falloir se recharger en chemin." enableInteraction ="1" />
+			<dialog text ="Heureusement, un jerrycan d'essence a été abandonné.
+
+Vous pouvez consulter la quantité d'essence disponible dans le jerrycan en passant votre souris dessus." img="[fr]jerrycan.png[/fr][en]jerrycan.png[/en]" enableInteraction ="1" />
+			<dialog text ="Pour boire de l'essence, une nouvelle instruction a été ajoutée à votre robot permettant de remplir votre réservoir avec l'essence qui se trouve dans le jerrycan.
+
+Cette instruction est à rajouter dans votre code." img="[fr]drink_oil.png[/fr][en]drink_oil.png[/en]" enableInteraction ="1" />
+		</dialogs>
+	</level>
+	<level src = "Levels/Essence/Niveau4.xml" name = "Niveau4" >
+		<dialogs>
+			<dialog text ="Attention cependant à la quantité d'essence que vous décidez de ramasser ici, vous pourriez vous retrouver bloqué après la sortie sans avoir la possibilité de revenir en arrière..." enableInteraction ="1" />
+		</dialogs>
+	</level>
+	<level src = "Levels/Essence/Niveau5.xml" name = "Niveau5" >
+		<dialogs>
+			<dialog text ="Ceci est votre dernière mission, votre robot ne possède qu'une unité d'essence au départ.
+
+Vous avez à votre disposition 4 jerrycans d'essences, mais d'après nos informations, un seul vous permettra d'atteindre la sortie, et une unique sortie sera accessible.
+
+Bonne chance !" img="[fr]last_level_oil.png[/fr][en]last_level_oil.png[/en]" enableInteraction ="1" />
+		</dialogs>
+	</level>
+</scenario>
