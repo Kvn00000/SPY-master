@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class JerrycanQuantity: MonoBehaviour {
-	// Advice: FYFY component aims to contain only public members (according to Entity-Component-System paradigm).
+	//Quantité d'essence dans le jerrycan
 	public int quantity;
 	
 }

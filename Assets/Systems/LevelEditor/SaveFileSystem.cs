@@ -242,7 +242,7 @@ public class SaveFileSystem : FSystem
 						levelExport += "\t\t<slot slotId=\""+ slot + "\" />\n";
 					levelExport += "\t</console>\n\n";
 					break;
-				case Jerrycan j:
+				case Jerrycan j: // write in the XML file the jerrycan
 					levelExport += "\t<jerrycan posX=\"" + (j.col+1 - minCol) + "\" posY=\"" + (j.line+ 1 - minLine) + "\" oilQuantity=\"" + j.oilQuantity + "\"" + " direction=\"" + (int)j.orientation + "\" />\n";
 					break;
 				case Door d:
@@ -251,7 +251,7 @@ public class SaveFileSystem : FSystem
 				case PlayerRobot pr:
 					levelExport += "\t<player inputLine=\""+ pr.inputLine + "\" posX=\"" + (pr.col + 1 - minCol) + "\" posY=\"" + (pr.line + 1 - minLine) + "\" direction=\"" + (int)pr.orientation +  "\" />\n\n";
 					break;
-                case RustyPlayerRobot rpr:
+                case RustyPlayerRobot rpr: // write in the XML file the rusty robot
                     levelExport += "\t<rustyrobot inputLine=\"" + rpr.inputLine + "\" posX=\"" + (rpr.col + 1 - minCol) + "\" posY=\"" + (rpr.line + 1 - minLine) + "\" direction=\"" + (int)rpr.orientation  +  "\" oilTankQuantity=\"" + rpr.oilTankQuantity + "\" />\n\n";
                     break;
                 case EnemyRobot er:

@@ -106,10 +106,11 @@ public class TilePopupSystem : FSystem
 					consoleSlotsPopup.GetComponentInChildren<TMP_InputField>().text = string.Join(", ", c.slots);
 					consoleSlotsPopup.GetComponentInChildren<Toggle>().isOn = c.state;
 					break;
-				case Jerrycan j:
+				case Jerrycan j: // Jerrycan
+					// enable popups
 					GameObjectManager.setGameObjectState(orientationPopup, true);
 					GameObjectManager.setGameObjectState(oilQuantityPopup, true);
-
+					// load data
 					oilQuantityPopup.GetComponentInChildren<TMP_InputField>().text = j.oilQuantity.ToString();
 
 					break;
@@ -266,12 +267,14 @@ public class TilePopupSystem : FSystem
 			((DecorationObject)selectedObject).path = furnitureNameToPath[newData];
 	}
 
+	// see oilQuantityPopup GameObject childs
 	public void popupOilQuantity(string newData){
 		if(selectedObject != null){
 			((Jerrycan)selectedObject).oilQuantity = int.Parse(newData);
 		}
 	}
 
+	// see oilTankQuantityPopup GameObject childs
 	public void popupOilTankQuantity(string newData){
 		if(selectedObject != null){
 			((RustyPlayerRobot)selectedObject).oilTankQuantity = int.Parse(newData);

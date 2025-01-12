@@ -202,10 +202,11 @@ public class EditorGridSystem : FSystem
 					break;
 				case "jerrycan" :
 					try{
+						// Get position and orientation
 						position = getPositionFromXElement(child);
 						orientation = (Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value);
 						setTile(position.Item1, position.Item2, Cell.Jerrycan, orientation);
-
+						// Get oil quantity
 						int oilQ = int.Parse(child.Attributes.GetNamedItem("oilQuantity").Value);
 						((Jerrycan)paintableGrid.floorObjects[position]).oilQuantity = oilQ;
 					}catch{
@@ -244,11 +245,14 @@ public class EditorGridSystem : FSystem
                 case "rustyrobot":
                     try
                     {
+						// Get position and orientation
                         position = getPositionFromXElement(child);
                         orientation = (Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value);
                         setTile(position.Item1, position.Item2, Cell.RustyPlayer, orientation);
+
                         inputLine = child.Attributes.GetNamedItem("inputLine").Value;
                         ((RustyPlayerRobot)paintableGrid.floorObjects[position]).inputLine = inputLine;
+						// Get oil tank quantity
 						int oilTankQ = int.Parse(child.Attributes.GetNamedItem("oilTankQuantity").Value);
 						((RustyPlayerRobot)paintableGrid.floorObjects[position]).oilTankQuantity = oilTankQ;
                     }
@@ -473,6 +477,7 @@ public class Jerrycan : FloorObject{
 
 	public int oilQuantity;
 	public Jerrycan(Direction.Dir orientation, int line, int col) : base(Cell.Jerrycan, orientation, line, col){
+		// Initial value in editor
 		this.oilQuantity = 0;
 	}
 }
@@ -519,6 +524,7 @@ public class RustyPlayerRobot : Robot
         bool orientable = true, UIRootContainer.SolutionType scriptType = UIRootContainer.SolutionType.Undefined, UIRootContainer.EditMode editMode = UIRootContainer.EditMode.Editable) :
         base(Cell.RustyPlayer, associatedScriptName, orientation, line, col, orientable, scriptType, editMode)
     {
+		// Initial value in editor
 		this.oilTankQuantity = 0;
 
     }

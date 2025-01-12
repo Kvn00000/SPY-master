@@ -27,11 +27,13 @@ public class TooltipContent : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if (text.Contains("#rustyName"))
         {
             if (GetComponent<OilTank>().quantity >= 0)
-            {
+            {   
+                // On affiche le niveau d'essence du robot
                 formatedContent = text.Replace("#rustyName", GetComponent<AgentEdit>().associatedScriptName + "<br>Niveau d'essence: " + GetComponent<OilTank>().quantity);
             }
             else
             {
+                // On affiche que le robot a une essence infinie
                 formatedContent = text.Replace("#rustyName", GetComponent<AgentEdit>().associatedScriptName + "<br>Niveau d'essence: ∞ Infini ");
 
             }
@@ -40,6 +42,7 @@ public class TooltipContent : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
         if (text.Contains("#showOilQuantity"))  
         {
+            // On affiche le niveau d'essence du jerrycan
             formatedContent = text.Replace("#showOilQuantity", ""+GetComponent<JerrycanQuantity>().quantity);
         }
         tooltip.ShowTooltip(formatedContent);

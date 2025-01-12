@@ -137,7 +137,7 @@ public class LevelGenerator : FSystem {
 					(Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value), int.Parse(child.Attributes.GetNamedItem("slotId").Value));
 					break;
 
-                case "jerrycan":
+                case "jerrycan": //Cree un jerrycan	selon les parametres du XML
                     createJerrycan(int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value), int.Parse(child.Attributes.GetNamedItem("oilQuantity").Value));
                     break;
 
@@ -156,7 +156,7 @@ public class LevelGenerator : FSystem {
 						nameAgentByUser = agentName.Value;
 
 					GameObject agent;
-					if(child.Name == "rustyrobot"){
+					if(child.Name == "rustyrobot"){ // Si c'est un rusty robot, on charge la quantite d'essence
 						agent = createEntity(Utility.extractLocale(nameAgentByUser), int.Parse(child.Attributes.GetNamedItem("posX").Value), int.Parse(child.Attributes.GetNamedItem("posY").Value ),
 						(Direction.Dir)int.Parse(child.Attributes.GetNamedItem("direction").Value), child.Name,  int.Parse(child.Attributes.GetNamedItem("oilTankQuantity").Value));
 
@@ -283,7 +283,7 @@ public class LevelGenerator : FSystem {
 				break;
 
 			case "rustyplayer":
-			case "rustyrobot":
+			case "rustyrobot"://Create a rusty robot
 				Debug.Log("Lecture rusty robot");
                 entity = GameObject.Instantiate<GameObject>(Resources.Load("Prefabs/Rusty Robot Kyle") as GameObject, LevelGO.transform.position + new Vector3(gridY * 3, 1.5f, gridX * 3), Quaternion.Euler(0, 0, 0), LevelGO.transform);
 				
@@ -394,6 +394,7 @@ public class LevelGenerator : FSystem {
 
 	private void createJerrycan(int gridX, int gridY, int qte)
 	{
+		// Create a jerrycan with the quantity of oil
         GameObject activable = GameObject.Instantiate<GameObject>(Resources.Load("Prefabs/Jerrycan") as GameObject, LevelGO.transform.position + new Vector3(gridY * 3, 1.5f, gridX * 3), Quaternion.Euler(0, 0, 0), LevelGO.transform);
 		activable.GetComponent<Position>().x = gridX;
 		activable.GetComponent<Position>().y = gridY;
