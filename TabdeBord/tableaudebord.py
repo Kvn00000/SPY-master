@@ -464,9 +464,17 @@ def update_graph(selected_level):
                     {'x': list(range(1, len(times) + 1)), 'y': times, 'type': 'bar'}
                 ],
                 'layout':{
-                    'tickmode' : 'linear',
-                    'tick0' : 1,
-                    'dtick' : 1
+                    'xaxis': {
+                        'title': 'Numéro de tentative',
+                        'tickmode' : 'linear',
+                        'tick0' : 1,
+                        'dtick' : 1,
+                    },
+                    'yaxis': {
+                        'title': 'Temps (s)'
+                    },
+                    
+                    'title' : f"Temps effectués pour le niveau {selected_level}"
                 }
             }
         
